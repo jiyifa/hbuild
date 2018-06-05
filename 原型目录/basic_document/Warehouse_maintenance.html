@@ -1,10 +1,176 @@
 <!DOCTYPE html>
 <html>
-	<!--仓库维护-->
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+	<meta charset="UTF-8">
+	<title>仓库维护</title>
+	<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css" />
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+</head>
+<script>
+	Ext.onReady(function() {
+		Ext.BLANK_IMAGE_URL = "../extjs/resources/images/default/s.gif";
+		Ext.QuickTips.init();
+		windowst.show();
+	});
+
+
+	var forms = Ext.create('Ext.form.Panel', {
+		bodyPadding: 5,
+		height: '100%',
+		layout: "column",
+		baseCls: 'x-plain',
+		items: [{
+			xtype: 'textfield',
+			name: 'BillNo',
+			fieldLabel: '仓库编号',
+			style: 'color:blue',
+			width: 250,
+			labelWidth: 80,
+			/*emptyText: '请输入供应商',*/
+			anchor: '100%',
+		}, {
+			style: 'color:blue',
+			xtype: 'textfield',
+			name: 'BillName',
+			fieldLabel: '仓库名称',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textfield',
+			name: 'EnglishName',
+			fieldLabel: '仓库简称',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textfield',
+			name: 'EnglishName',
+			fieldLabel: '英文名称',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textfield',
+			name: 'EnglishName',
+			fieldLabel: '联系电话',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textfield',
+			name: 'EnglishName',
+			fieldLabel: '仓库地址',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textfield',
+			name: 'EnglishName',
+			fieldLabel: '联系人名',
+			width: 250,
+			labelWidth: 80,
+			anchor: '100%',
+		},{
+			xtype: 'textareafield',
+			name: 'remark',
+			fieldLabel: '备注',
+			width: 250,
+			height:100,
+			labelWidth:80,
+			anchor: '100%',
+		}]
+
+	});
+
+	//winform窗口
+	var windowst = new Ext.Window({
+		width: 300,
+		height: 350,
+		title: "仓库设定",
+		closable: true,
+		minimizable:true,
+		resizable: false, //设置是否可以改变大小
+		draggable: true,
+		anchor: '100%',
+		items: [forms],
+	});
+
+	function afronction() {
+		var song = Ext.encode(forms.getForm().getValues());
+		Ext.Ajax.request({
+			//被用来向服务器发起请求默认的url
+			url: "",
+			//请求时发送后台的参数,既可以是Json对象，也可以直接使用“name = value”形式的字符串
+			params: [{}],
+			//请求时使用的默认的http方法
+			method: "post",
+			//请求成功时回调函数
+			success: function() {
+				Ext.ux.Toast.msg("信息提示", "成功删除所选记录！");
+			},
+			//请求失败时回调函数
+			failure: function() {
+				Ext.ux.Toast.msg("信息提示", "信息删除出错，请联系管理员!");
+			}
+		});
+		alert(song); // 序列化表单
+	}
+
+	function fromstrn() {
+		//alert(Ext.encode(forms.getForm().getValues())); 序列化表单
+
+		//var record=grids.getSelectionModel().getLastSelected(); //获取选中的一行对象
+
+		//	var clikd=grids.getSelectionModel().getSelected();//获取选中的一行
+
+		//	var selecto=grids.getSelectionModel().getSelection(); //选中多行 返回数组
+		//for(var i=0;i<selecto.length;i++){
+		//	selecto[i].get('name');
+		//}
+
+		//var cout=grids.getStore().getCount(); //获取grid行数
+
+		//var name=record.get('name');//获取值
+
+		//for(var i=0;i<grids.store.data.length;i++){
+		//var grit=grids.store.getAt(i).data; //获取全部值
+		//	alert(grit.bianma);
+		//}
+		//	}
+
+		//var arr=[]; //序列化表格
+		//var sni=grids.store.data;
+		//sni.each(function(record){
+		//arr.push(record.data);
+		//})
+		//alert(Ext.encode(arr));
+		//}
+
+		//grid.getSelectionModel().selectRow(0);//默认选中第一行
+
+		//grid.getView().refresh(); //刷新表格
+
+		//grids.store.removeAll();//移除全部数据
+
+		//grids.store.removeAt(0); //删除指定的行
+
+		//var selecto=grids.getSelectionModel().getSelection(); selecto.length>0是选中的 判断是否选中一行
+
+		//var selecto=grids.getSelectionModel().getSelection();
+		//var ston=grids.getStore();
+		//var selectData=selecto[0];
+		//var datainded=ston.indexOf(selectData);
+		//grids.store.removeAt(datainded); //删除选中行
+
+		//	var mosld=grids.getSelectionModel().getLastSelected();
+		//		mosld.set('name',123); //修改选中的列
+		//		mosld.commit();
+
+	}
+
+</script>
+<body>
+</body>
 </html>
