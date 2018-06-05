@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css"
+	href="ext-4.2.1/resources/css/ext-all-neptune-rtl-debug.css" />
+<script type="text/javascript" src="ext-4.2.1/ext-all.js"></script>
+<script type="text/javascript" src="ext-4.2.1/ext-lang-zh_CN.js"></script>
+<style>
+	.main-logo {float:left;display:block;margin:5px 3px;height:30px;}
+	.main-btn {float:right;margin:9px 5px 0 5px;}
+	.main-btn .x-btn-mc {text-align:left;}
+</style>
+<script>
+	//静态效果显示
+//Sample-020 左侧菜单动态添加中间显示内容
+Ext.onReady(function(){
+	
+	
+	
+	 function  TabCloseMenu(){
+     var tabs, menu, ctxItem;
+     this.init = function(tp){
+         tabs = tp;
+         tabs.on('contextmenu', onContextMenu);
+     }
+
+     function onContextMenu(ts, item, e){
+         if(!menu){ // create context menu on first right click
+             menu = new Ext.menu.Menu([{
+                 id: tabs.id + '-close',
+                 text: '关闭当前标签',
+                 iconCls : 'btnno',
+                 handler : function(){
+                     tabs.remove(ctxItem);
+                 }
+             },{
+                 id: tabs.id + '-close-others',
+                 text: '关闭其他标签',
+                 iconCls : 'btnno',
+                 handler : function(){
+                     tabs.items.each(function(item){
+                         if(item.closable && item != ctxItem){
+                             tabs.remove(item);
+                         }
+                     });
+                 }
+             },{
+                 id: tabs.id + '-close-all',
+                 text: '关闭所有标签',
+                 iconCls : 'btnno',
+                 handler : function(){
+                     tabs.items.each(function(item){
+                         if(item.closable){
+                            tabs.remove(item);
+                        }
+                     });
+                 }
+             }]);
+         }
+         ctxItem = item;
+         var items = menu.items;
+         items.get(tabs.id + '-close').setDisabled(!item.closable);
+
+         var disableOthers = true;
+         tabs.items.each(function(){
+             if(this != item && this.closable){
+                 disableOthers = false;
+                 return false;
+             }
+         });
+         items.get(tabs.id + '-close-others').setDisabled(disableOthers);
+         menu.showAt(e.getPoint());
+        
+         var disableAll = true;
+          tabs.items.each(function(){
+              if(this.closable){
+                  disableAll = false;
+                  return false;
+              }
+         });
+         items.get(tabs.id + '-close-all').setDisabled(disableAll);
+          menu.showAt(e.getPoint());
+     }
+};
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//创建TabPanel
+	var tabPanel = Ext.create('Ext.TabPanel',{
+		title:'Main Content',
+		region:'center',
+		activeTab:0,
+		collapsible:true, //是否可以折叠 
+//		html:'Main Content02',
+ 		plugins : Ext.create('Ext.ux.TabCloseMenu', {  
+                            closeTabText : '关闭当前页',  
+                            closeOthersTabsText : '关闭其他页',  
+                            closeAllTabsText : '关闭所有页'  
+                        })
+	});
+	
+	//创建TreePanel
+	var treePanel = Ext.create('Ext.tree.TreePanel',{
+		title:'West Panle',
+//		html:'左边',
+		region:'west',//指定子面板所在区域为west
+		width:150,
+		collapsible:true,  //是否可以折叠   
+		autoScroll:true,	//自动滚动条
+		animate:true,	//动画效果
+		rootVisible:true,	//根节点是否可见
+		lines:true,	//节点之间使用横竖线连接
+		root:{
+			text:'导航者菜单栏',
+			id:'root',
+			children:[
+			{
+				text:'基本信息',
+				id:'jbxx',
+				leaf:false,
+				children:[
+					{text:'采购请购单',id:'a',leaf:true},
+					{text: "采购询价单", id:'b',leaf:true},
+					{text: "采购订单", id:'c',leaf:true},
+					{text: "采购入库单", id:'d',leaf:true},
+					{text: "采购退货单", id:'e',leaf:true}
+				]
+			},{
+				text:'库存管理',
+				id:'kcgl',
+				leaf:false,
+				children:[
+					{text:'采购请购单',id:'f',leaf:true},
+					{text: "采购询价单", id:'g',leaf:true},
+					{text: "采购订单", id:'h',leaf:true},
+					{text: "采购入库单", id:'j',leaf:true},
+					{text: "采购退货单", id:'k',leaf:true}
+				]
+			},{
+				text:'销售管理',
+				id:'xsgl',
+				leaf:false,
+				children:[
+					{text:'采购请购单',id:'1',leaf:true},
+					{text: "采购询价单", id:'2',leaf:true},
+					{text: "采购订单", id:'3',leaf:true},
+					{text: "采购入库单", id:'4',leaf:true},
+					{text: "采购退货单", id:'5',leaf:true}
+				]
+			},{
+				text:'采购管理',
+				id:'cggl',
+				leaf:false,
+				children:[
+					{text:'采购请购单',id:'6',leaf:true},
+					{text: "采购询价单", id:'7',leaf:true},
+					{text: "采购订单", id:'8',leaf:true},
+					{text: "采购入库单", id:'9',leaf:true},
+					{text: "采购退货单", id:'10',leaf:true}
+				]
+			}]
+		},
+		listeners:{
+			"itemclick":function(v,r,item){
+				var n = tabPanel.getComponent(r.raw.id);
+				if(!r.raw.leaf){ //非叶子节点，不进行操作
+					return; 
+				}
+		        if(!n){
+		        	n = tabPanel.add({
+		        		'id' : r.raw.id,  
+	                    'title' : r.raw.text,  
+	                     closable : true, // 通过html载入目标页  
+	                     html : '<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src="'+r.raw.id+'"></iframe>'
+		        	});
+		        }
+		        tabPanel.setActiveTab(n);
+			}
+		}
+	});
+
+function createNorth() {
+				return {
+					region: "north",
+					xtype: "container",
+					//contentEl: "header",
+					height: 50,
+					layout: "auto",
+					items: [{
+						xtype: "box",
+						autoEl: {
+							tag: "img",
+							src: "img/logo.png",
+							cls: "main-logo"
+						}
+					}, {
+						xtype: "splitbutton",
+						cls: "main-btn",
+						iconCls: "x-btn-user",
+						minWidth: 104,
+						enabelToggle: true,
+						pressed: true,
+						text: "Neo",
+						menu: new Ext.menu.Menu({
+							items: [{
+								text: "修改密码",
+								iconCls: "x-btn-lock"
+							}, {
+								text: "退出系统",
+								iconCls: "x-btn-exit",
+								handler: function() {
+									window.location.href = "index.html";
+								}
+							}]
+						})
+					}]
+				};
+			};
+
+
+	Ext.create('Ext.container.Viewport',{
+		layout:'border',//表格布局
+		items:[createNorth(),treePanel,tabPanel]
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+
+
+	</script>
+	</head>
+	<body>
+	</body>
+</html>
