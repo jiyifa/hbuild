@@ -129,10 +129,10 @@ Ext.onReady(function(){
 				id:'jbxx',
 				leaf:false,
 				children:[
-					{text:'采购请购单',id:'a',leaf:true},
-					{text: "采购询价单", id:'b',leaf:true},
-					{text: "采购订单", id:'c',leaf:true},
-					{text: "采购入库单", id:'d',leaf:true},
+					{text:'仓库基本资料',id:'basic_document/Warehouse_maintenance.html',leaf:true},
+					{text: "计量单位基本资料", id:'basic_document/Measurement_unt_maintenance.html',leaf:true},
+					{text: "物料主文件", id:'basic_document/tesr.html',leaf:true},
+					{text: "物料类别", id:'basic_document/wllb.html',leaf:true},
 					{text: "采购退货单", id:'e',leaf:true}
 				]
 			},{
@@ -140,9 +140,9 @@ Ext.onReady(function(){
 				id:'kcgl',
 				leaf:false,
 				children:[
-					{text:'采购请购单',id:'f',leaf:true},
-					{text: "采购询价单", id:'g',leaf:true},
-					{text: "采购订单", id:'h',leaf:true},
+					{text:'采购请购单',id:'采购请购单',leaf:true},
+					{text: "采购询价单", id:'hjh',leaf:true},
+					{text: "采购订单", id:'ghjh',leaf:true},
 					{text: "采购入库单", id:'j',leaf:true},
 					{text: "采购退货单", id:'k',leaf:true}
 				]
@@ -151,8 +151,8 @@ Ext.onReady(function(){
 				id:'xsgl',
 				leaf:false,
 				children:[
-					{text:'采购请购单',id:'1',leaf:true},
-					{text: "采购询价单", id:'2',leaf:true},
+					{text:'销售出库',id:'sales/Bill_of_sales.html',leaf:true},
+					{text: "收款", id:'sales/receivables.html',leaf:true},
 					{text: "采购订单", id:'3',leaf:true},
 					{text: "采购入库单", id:'4',leaf:true},
 					{text: "采购退货单", id:'5',leaf:true}
@@ -162,6 +162,8 @@ Ext.onReady(function(){
 				id:'cggl',
 				leaf:false,
 				children:[
+				{text: "采购询价单", id:'purchase/inquiry_sheet.html',leaf:true},
+					{text: "采购订单", id:'purchase/purchase_order.html',leaf:true},
 					{text:'采购请购单',id:'6',leaf:true},
 					{text: "采购询价单", id:'7',leaf:true},
 					{text: "采购订单", id:'8',leaf:true},

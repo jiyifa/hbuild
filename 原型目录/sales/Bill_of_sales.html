@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 	<!--销售出库  -->
@@ -1336,3 +1337,1348 @@ function fromstrn(){
 
 	</body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ON</title>
+<link rel="stylesheet" type="text/css"
+	href="../extjs/resources/css/ext-all.css" />
+<script type="text/javascript" src="../extjs/ext-all.js"></script>
+<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script>
+	
+	$(document).keydown(function(event){
+
+　　
+    if(event.keyCode==115){
+    	  var grids2 = Ext.create('Ext.grid.Panel', {
+				
+				plugins: [
+					Ext.create('Ext.grid.plugin.CellEditing', {
+						clicksToEdit: 1
+					})
+				],
+				columns: [{
+						header: '客户编号',
+						xtype: 'rownumberer',
+						dataIndex: 'lh',
+						width:100
+					},
+
+					{
+						header: '客户简称',
+						dataIndex: 'name',
+						width:100
+					}
+				],
+				height: '100%',
+				width: '100%'
+			})
+		var filterPanel = Ext.create('Ext.panel.Panel', {
+				
+				width: 218,
+				height: 168,
+				border:false,
+				items: [grids2],
+				bbar: [{
+						xtype: "label",
+						text: '总计:',
+						width: 90
+					},
+					{
+						xtype: "textfield",
+						disabled: true,
+						width: 90,
+						margin: '0 180',
+						value: '0.00'
+					},
+					{
+						xtype: "textfield",
+						disabled: true,
+						width: 90,
+						margin: '0',
+						value: '0.00'
+					},
+					{
+						xtype: "textfield",
+						disabled: true,
+						width: 90,
+						margin: '0 40 0 30',
+						value: '0.00'
+					},
+					{
+						xtype: "textfield",
+						disabled: true,
+						width: 90,
+						margin: '0 0 0 0',
+						value: '0.00'
+					}
+				],
+			});
+			
+		var grids = Ext.create('Ext.grid.Panel', {
+				
+				plugins: [
+					Ext.create('Ext.grid.plugin.CellEditing', {
+						clicksToEdit: 1
+					})
+				],
+				columns: [{
+						header: '',
+						xtype: 'rownumberer',
+						dataIndex: 'lh'
+					},
+
+					{
+						header: '(---)',
+						dataIndex: 'name',
+						width:50
+					}
+				],
+				height: 165,
+				width: 130
+			})
+    Ext.create("Ext.window.Window",{  
+        title:'单选--客户设定',  
+        height:280,  
+        width:380,  
+        constrain:true,  
+        modal:true,  
+        plain:true,  
+        autoScroll:true,      
+        icon:'',  
+        html:'',
+        items:[{
+        	layout:'column', 
+        	labelSeparator:'：',
+        	items:[{
+        	xtype: 'combo',
+       		name: 'photo',
+			editable : false,
+			queryMode: "local",
+			triggerAction : 'all',
+			displayField: "Name",
+            valueField: "Value",
+            store:['sad','sad'],
+			width:110,
+       		labelWidth: 50
+        },{
+        	xtype: 'numberfield',
+        	value: 0,
+        	minValue: 0,
+       		width:60
+        },{
+        	 xtype:"checkbox",
+        	 style:'margin-left:5px'
+        },{
+        	xtype:"displayfield",
+        	fieldLabel: '寻找同时选取',
+        	labelSeparator:''
+        },{
+        	layout: 'column',
+        	border:false,
+        	items:[{
+        		
+        	xtype: 'combo',
+       		name: 'photo',
+			editable : false,
+			queryMode: "local",
+			triggerAction : 'all',
+			displayField: "Name",
+            valueField: "Value",
+            store:['sad','sad'],
+			width:150
+        },{
+        	 xtype:"button",
+        	 text:'查询',
+        },{
+        	xtype:"button",
+        	text:'刷新'
+        },{
+        	xtype:"button",
+        	width:60,
+        	style:'margin-left:6px',
+        	text:'取回'
+        	}]
+        },{
+        	layout:"column",
+        	border:false,
+        	items:[{
+        	xtype:"button",
+        	width:60,
+        	text:'全选'
+        },{
+        	xtype:"button",
+        	width:60,
+        	text:'全清'
+        },{
+        	xtype:"button",
+        	width:60,
+        	text:'以下全选'
+        },{
+        	xtype:"button",
+        	width:60,
+        	text:'以下全清'
+        },{
+        	xtype:"button",
+        	width:60,
+        	text:'新增记录',
+        	handler:function(){
+	         mainWindowok.show();
+					}	
+        },{
+        	layout:"column",
+        	border:false,
+        	items:[grids,filterPanel]
+        }]
+        }]
+        }]
+        ,
+        renderTo:Ext.getBody()  
+    }).show();  
+    }
+
+　　});
+
+var fielmenu=new Ext.menu.Menu({
+		items:[{text:'期初账款设定',handler:function(){
+			fromaction();
+		}},{text:'原产物料设定'}]
+	});
+	var fielmenu2=new Ext.menu.Menu({
+		items:[{text:'上网'},{text:'写信'},{text:'历史交易查询'},{text:'帐额数据效验'}]
+	});
+
+
+var grids=Ext.create('Ext.grid.Panel',{
+	 listeners:{
+						containerdblclick: function(grid, e, eOpts){ //单击事件
+	    						grid.getStore().add({'name':'', 'dizhi':'','bianma':'','lianxi':''});
+    						
+    					}
+				
+			},plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（栏号）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 50,
+								sortable: false
+        					},
+					
+        		{ header: '地址编号',  dataIndex: 'name',editor: { xtype:'textfield'}},
+       			{ header: '地址', dataIndex: 'dizhi', flex: 1,editor: { xtype:'textfield'}},
+       				  { header: '邮政编码', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+					 { header: '联系人', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+   					 ],
+   			 height: 130,
+			 width:'100%',
+			 autoScroll:false,
+			 
+});
+	
+
+var formpalcd=Ext.create('Ext.form.Panel', { //表单
+    bodyPadding: 5,
+    width:'100%',
+    // 将会通过 AJAX 请求提交到此URL
+   // url: 'save-form.php',
+    // 表单域 Fields 将被竖直排列, 占满整个宽度
+    layout: 'column',
+    defaults: {
+        anchor: '100%'
+    },
+
+    // The fields
+    defaultType: 'textfield',
+    items: [{
+			xtype: 'textfield',
+       		name: 'supplierId',
+			fieldLabel: '客户编号',
+       		labelWidth: 70
+         
+			},{
+		style:'margin-left:9px',
+		 xtype: 'textfield',
+        name: 'accountBelong',
+        fieldLabel: '账款归属',
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name:'supplierFullName',
+        fieldLabel: '客户全称',
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+		 xtype: 'textfield',
+        name: 'genre',
+        fieldLabel: '类别',
+        labelWidth: 70,
+		vtype:'url',//只能输入网址
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'supplierSimName',
+        fieldLabel: '客户简称',
+        labelWidth: 70,
+		
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+		 xtype: 'textfield', //多行文本域
+        name: 'area',
+        fieldLabel: '地区',
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        fieldLabel: '英文全称',
+		
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+		 xtype: 'textfield',  //数值
+        name: 'currency',
+        fieldLabel: '币别',
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield', //日期
+        fieldLabel: '英文简称',
+		
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		style:'margin-left:9px',
+		 xtype: 'textfield',
+        name: 'address',
+        fieldLabel: '公司地址',
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+				xtype:"tabpanel",
+				width:'100%',
+				height:'220px',
+				items:[{
+					title:'基本资料',
+					bodyPadding: 5,
+						layout:"column",
+					items:[{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'responsible',
+				fieldLabel: '负责人',
+       			labelWidth: 70
+			},{
+			xtype: 'textfield',
+       		name: 'purchaseName',
+			fieldLabel: '业务人员',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+       		name: 'linkMan',
+			fieldLabel: '联系人',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+       		name: 'taxNo',
+			fieldLabel: '税务登记号',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			},
+			{
+			xtype: 'textfield',
+       		name: 'telephoneone',
+			fieldLabel: '联系电话',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+       		name: 'capitalization',
+			fieldLabel: '资本额',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '联系电话二',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '行业别',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '银行账号',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '电子邮件',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '网址',
+       		labelWidth: 70
+			},{
+			xtype: 'textfield',
+			fieldLabel: '传真号码',
+			style:'margin-left:19px',
+       		labelWidth: 70
+			}]
+				},{
+				title:"销售信息",
+				bodyPadding: 5,
+				style:'padding-top:5px',
+				height:'200px',
+				items:[
+				{
+			xtype: 'datefield',
+       		name: 'earliestTradeDate',
+			fieldLabel: '最近销售出库日',
+       		labelWidth: 90
+			},{
+		 xtype: 'datefield',
+        name: 'latelyReturnDate',
+        fieldLabel: '最近销售退货日',
+        labelWidth: 90,
+			},{
+	             	fieldLabel: '售价等级',
+					xtype:'combo',
+	             	name: 'priceofTax',
+	             	displayField: 'name',
+					labelWidth:90,
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"建议售价", "name":"建议售价"},
+        					{"abbr":"售价A", "name":"售价A"},
+        					{"abbr":"售价B", "name":"售价B"},
+        					{"abbr":"售价C", "name":"售价C"},
+        					{"abbr":"售价D", "name":"售价D"},
+        					{"abbr":"售价E", "name":"售价E"},
+							
+					   ]
+					}),
+					value: '建议售价',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	         	},{
+		 xtype: 'datefield',
+        name: 'invalidDate',
+        fieldLabel: '终止交易日',
+        labelWidth: 90,
+			},{
+	             	fieldLabel: '单价是否含税',
+					xtype:'combo',
+	             	name: 'priceofTax',
+	             	displayField: 'name',
+					labelWidth:90,
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"含税", "name":"含税"},
+        					{"abbr":"未税", "name":"未税"}
+							
+					   ]
+					}),
+					value: '含税',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	         	},{
+	         		xtype: 'textfield',
+                   name: 'invalidDate',
+                 fieldLabel: '潜在客户编号',
+                    labelWidth: 90,
+	         	}
+				]
+				
+			},{
+				title:"收款信息",
+				bodyPadding: 5,
+				layout:"column",
+				height:'200px',
+				items:[{
+					xtype:'label',
+					text:'额度设定',
+					style:'border-bottom:1px solid blue;color:#350257;',
+				},{
+					xtype:'label',
+					text:'账款信息',
+					margin:'0 190',
+					style:'border-bottom:1px solid blue;color:#350257;',
+				},
+				{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'amountQuota',
+				margin:"2",
+				fieldLabel: '账款额度',
+       			labelWidth: 60
+			},{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'startAdvRecv',
+				margin:"2",
+				fieldLabel: '期初预付款',
+       			labelWidth: 70
+			},{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'remainQuota',
+				margin:"2",
+				fieldLabel: '剩余额度',
+       			labelWidth: 60
+			},{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'startReceivable',
+				margin:"2",
+				fieldLabel: '期初应付款',
+       			labelWidth: 70
+			},{
+				xtype: 'textfield',
+				width:'120',
+				margin:"2",
+				fieldLabel: '发票类型',
+       			labelWidth: 60
+			},{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'cuReceiRecv',
+				margin:"2",
+				fieldLabel: '期末预付款',
+       			labelWidth: 70
+			},{
+	             	fieldLabel: '信用等级',
+					xtype:'combo',
+	             	name: 'creditLevel',
+	             	displayField: 'name',
+					labelWidth:63,
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"A", "name":"A"},
+        					{"abbr":"B", "name":"B"},
+							{"abbr":"C", "name":"C"},
+							{"abbr":"D", "name":"D"},
+							{"abbr":"E", "name":"E"},
+							{"abbr":"F", "name":"F"}
+					   ]
+					}),
+					value: 'A',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	         	},{
+				xtype: 'textfield',
+				width:'120',
+       			name: 'cuReceivable',
+				margin:"2",
+				fieldLabel: '期末应付款',
+       			labelWidth: 70
+			     }]
+		      },{
+				title:"地址",
+				items:grids,
+			},{
+				title:"其他",
+				height:200,
+				bodyPadding: 15,
+				items:[{
+     		   	xtype     : 'textarea',
+				name:'meMo',
+       		    fieldLabel: '备注',
+				width:400, 
+				labelWidth: 30,
+				height:'100%'
+				}]
+			}]
+		}]
+});
+
+
+
+var mainWindowok= new Ext.Window({
+		
+		width:530,
+		height:428,
+		title:"客户主文件",
+		closable:true,
+		resizable:false, //设置是否可以改变大小
+		draggable:true, //设
+		items:[formpalcd],
+		bbar:[{xtype:"splitbutton",text:'设定',width:90,menu:fielmenu},{xtype:"splitbutton",text:'功能',width:90,menu:fielmenu2}],
+	});
+
+
+
+
+
+Ext.onReady(function(){
+Ext.BLANK_IMAGE_URL = "extjs/resources/images/default/s.gif";
+	  Ext.QuickTips.init();
+	windowst.show();
+});
+var fielmenu=new Ext.menu.Menu({
+		items:[{text:'历史交易查询',handler:function(){
+	        windowss.show();
+					}},{
+					text:'利润预估查询',handler:function(){
+	        windowsx.show();
+					}	
+						
+					}]
+	});
+	
+	
+	
+	    var formpalcd=Ext.create('Ext.form.Panel', {
+    	 bodyPadding: 5,
+    width:'100%',
+    // 将会通过 AJAX 请求提交到此URL
+   // url: 'save-form.php',
+    // 表单域 Fields 将被竖直排列, 占满整个宽度
+    layout: 'column',
+    defaults: {
+        anchor: '100%'
+    },
+
+    // The fields
+    defaultType: 'textfield',
+    items: [{
+			xtype: 'textfield',
+       		name: 'supplierId',
+			fieldLabel: '客户',
+       		labelWidth: 50,
+          
+			},{
+			style:'margin-left:19px',	
+			xtype: 'textfield',
+       		name: 'supplierId',
+			fieldLabel: '单据号',
+       		labelWidth: 50,
+			}
+    ]
+    	
+    	
+    })
+
+
+
+
+var grids=Ext.create('Ext.grid.Panel',{
+	 listeners:{
+						containerdblclick: function(grid, e, eOpts){ //单击事件
+	    						grid.getStore().add({'name':'', 'dizhi':'','bianma':'','lianxi':''});
+    						
+    					}
+				
+			},plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（栏号）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 50,
+								sortable: false
+        					},
+					
+        		{ header: '物料编号',  dataIndex: 'name',editor: { xtype:'textfield'}},
+       			{ header: '物料名称', dataIndex: 'dizhi', flex: 1,editor: { xtype:'textfield'}},
+       			{ header: '规格型号', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				{ header: '本币金额', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+			    { header: '实际成本', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				{ header: '实际毛利', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+				{ header: '实际毛利率', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+			    { header: '标准成本', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+				{ header: '标准毛利', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+			    { header: '标准毛利率', dataIndex: 'lianxi',editor: { xtype:'textfield'} },	
+			  
+				
+   					 ],
+   			 height: 130,
+			 width:'100%',
+			 autoScroll:false,
+			 
+});
+	
+
+	var windowsx=new  Ext.Window({
+		width:525,
+		height:328,
+		title:"利润预估查询",
+		closable:true,
+		items:[formpalcd,grids],
+		resizable:false, //设置是否可以改变大小
+		draggable:true,
+		closeAction:"hide"
+	});
+function fromaction(){
+	alert(Ext.encode(formpalcd.getForm().getValues()));// 序列化表单
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	 var formpalcd=Ext.create('Ext.form.Panel', {
+    	 bodyPadding: 5,
+    width:'100%',
+    // 将会通过 AJAX 请求提交到此URL
+   // url: 'save-form.php',
+    // 表单域 Fields 将被竖直排列, 占满整个宽度
+    layout: 'column',
+    defaults: {
+        anchor: '100%'
+    },
+
+    // The fields
+    defaultType: 'textfield',
+    items: [{
+			xtype: 'textfield',
+       		name: 'supplierId',
+			fieldLabel: '客户',
+       		labelWidth: 50,
+          
+			},{
+				xtype:'button',
+				text: '资料输出',
+			style:'margin-left:150px',
+			},{
+				xtype:"button",
+				text:"取回",
+				style:'margin-left:9px',
+			}
+    ]
+    	
+    	
+    })
+
+
+
+
+var grids=Ext.create('Ext.grid.Panel',{
+	 listeners:{
+						containerdblclick: function(grid, e, eOpts){ //单击事件
+	    						grid.getStore().add({'name':'', 'dizhi':'','bianma':'','lianxi':''});
+    						
+    					}
+				
+			},plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（单别）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 50,
+								sortable: false
+        					},
+					
+        		{ header: '日期',  dataIndex: 'name',editor: { xtype:'textfield'}},
+       			{ header: '单号', dataIndex: 'dizhi', flex: 1,editor: { xtype:'textfield'}},
+       			{ header: '币别', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				{ header: '汇率', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+			    { header: '物料编号', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				{ header: '物料名称', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+				{ header: '规格型号', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+			    { header: '数量', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+				{ header: '单位', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+			    { header: '折扣前单价', dataIndex: 'lianxi',editor: { xtype:'textfield'} },	
+			    { header: '折数', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+			    { header: '单价', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+			    { header: '是否含税', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				{ header: '金额', dataIndex: 'lianxi',editor: { xtype:'textfield'} },
+				{ header: '备注', dataIndex: 'bianma',editor: { xtype:'textfield'} },
+				
+   					 ],
+   			 height: 130,
+			 width:'100%',
+			 autoScroll:false,
+			 
+});
+	
+
+	var windowss=new  Ext.Window({
+		width:525,
+		height:328,
+		title:"历史交易查询",
+		closable:true,
+		items:[formpalcd,grids],
+		resizable:false, //设置是否可以改变大小
+		draggable:true,
+		closeAction:"hide"
+	});
+function fromaction(){
+	alert(Ext.encode(formpalcd.getForm().getValues()));// 序列化表单
+}
+
+	
+	
+	
+	
+	
+	var fielmenu2=new Ext.menu.Menu({
+		items:[{text:'销售报价转入'},{text:'销售订单转入'}]
+	});
+	var fielmenu3=new Ext.menu.Menu({
+		items:[{text:'物料组合设定'},{text:'批次变更单价'}]
+	});
+
+var stroedt=Ext.create('Ext.data.Store', {
+			 model: 'User',
+			 fields:['name', 'dizhi','bianma', 'bianma','lianxi'],
+			data:{'items':[
+				{ 'name': '10111',  "dizhi":"北京",  "bianma":"40016","lianxi":"李忠"  },
+				{ 'name': '10112',  "dizhi":"上海",  "bianma":"68016" ,"lianxi":"朱经理"},
+				{ 'name': '10113', "dizhi":"天津",  "bianma":"408973" ,"lianxi":"周总" },
+				{ 'name': '10114', "dizhi":"重庆", "bianma":"404567" ,"lianxi":"刘经理" }
+			]},
+				proxy: {
+					type: 'memory',
+					reader: {
+						type: 'json',
+						root: 'items'
+					}
+				}
+ });
+
+
+
+var grids=Ext.create('Ext.grid.Panel',{
+    
+	 listeners:{
+				containerdblclick: function(grid, e, eOpts){ //单击事件
+	    						grid.getStore().add({'name':'12', 'dizhi':'','bianma':'','lianxi':''});
+    						
+    					},
+					itemcontextmenu:function(){
+					
+    						e.preventDefault();
+    						new Ext.menu.Menu({
+    							items:[{
+    								xtype: 'textfield',
+    								text: 'Lost',
+    								pressed: false,
+    								handler:function(){
+											alert();
+										}
+    							},{
+    								xtype: '',
+    								text: '111',
+    								pressed: false,
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '閫夋嫨鏂规',
+    								pressed: false,
+    								menu:new Ext.menu.Menu({
+    									items:[{
+    										text:'棰勮鏂规',
+    										pressed: false
+    									}]
+    								}),
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '瀵煎嚭鑷矱xcel',
+    								pressed: false,
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '缃戞牸鎵撳嵃',
+    								pressed: false,
+    								handler: function(){}
+    							}]
+    						}
+    						
+    						).showAt(e.getXY());
+				}
+			},plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（栏号）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 50,
+								sortable: false
+        					},
+					
+        		{ header: '物料编号',  dataIndex: 'name', width: 100,},
+       			 { header: '物料名称', dataIndex: 'dizhi',width: 120,editor: { xtype:'textfield',
+				 	listeners:{
+						focus:function(grid, e, eOpts){
+								windows2.show();
+								}
+							
+					}
+				 } },
+       				 { header: '规格型号', dataIndex: 'bianma' },
+					 { header: '单位名称', dataIndex: 'lianxi' },
+					 { header: '数量', dataIndex: 'lianxi'},
+					 { header: '折扣前单价', dataIndex: 'lianxi' },
+					 { header: '折数(%)', dataIndex: 'lianxi' },
+					 { header: '单价', dataIndex: 'lianxi' },
+					 { header: '金额', dataIndex: 'lianxi' },
+					 { header: '税率', dataIndex: 'lianxi' },
+					 { header: '税额', dataIndex: 'lianxi' },
+					 { header: '含税金额', dataIndex: 'lianxi' },
+					 { header: '批号', dataIndex: 'lianxi' },
+					 { header: '物理组合', dataIndex: 'lianxi' },
+					 { header: '赠品', dataIndex: 'lianxi' },
+					 { header: '分录备注', dataIndex: 'lianxi' },
+					 { header: '来源单别', dataIndex: 'lianxi' },
+					 { header: '来源单号', dataIndex: 'lianxi' },
+					 { header: '客户订单', dataIndex: 'lianxi' }
+   					 ],
+   			 height: 130,
+			 width:1971,
+			 autoScroll:false,
+			 
+})
+
+var filterPanel = Ext.create('Ext.panel.Panel', {
+    bodyPadding: 6,  // 避免Panel中的子元素紧邻边框
+    width: 1985,
+	height:170,
+    items:[grids],
+	bbar:[{xtype:"label",text:'总计:',width:90},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 180',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 40 0 30',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 0 0 0',value:'0.00'}],
+});
+
+var grid=Ext.create('Ext.form.Panel', {
+	bodyPadding: 5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[{
+		 xtype: 'textfield',
+        name: 'SalesMan',
+		bodyPadding: 5,
+        fieldLabel: '账款归属',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'datefield',
+        name: 'Marker',
+        fieldLabel: '收款日期',
+		style:'margin-left:19px',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+	             	fieldLabel:'收款条件',
+					xtype:'combo',
+	             	name: 'guowaimaoyi',
+					style:"margin-left:9px",
+	             	displayField: 'name',
+					labelWidth:70,
+					width:150,
+					
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"货到", "name":"货到"},
+        					{"abbr":"次月", "name":"次月"},
+        					{"abbr":"月结", "name":"月结"},
+        					{"abbr":"其他", "name":"其他"}
+							
+					   ]
+					}),
+					value: '货到',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+        			 anchor: '100%',
+			    },{
+		            xtype: 'textfield',
+                    name: '天',
+		            width:99,
+                    labelWidth: 15,
+		            margin:"0 1",
+		            anchor: '100%',
+			    },{
+		            xtype: 'label',
+                    text:'天',
+		            width:99,
+                    labelWidth: 15,
+		            margin:"0 1",
+		            
+		            
+	         	}
+			
+			
+			],
+			
+});
+
+
+
+var  tableds=Ext.create('Ext.TabPanel',{
+	width:"100%",
+	height:230,
+	autoScroll:true,
+	bodyPadding: 5,
+	items:[{title:'内容',autoScroll:true,items:[filterPanel]},{title:'备注',xtype:'textarea',name:'Remark',fieldLabel: '备注',labelWidth: 30,},{title:'账款',items:[grid]}],
+});
+
+
+var formsg=Ext.create('Ext.form.Panel', {
+    bodyPadding: 5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[{
+		 xtype: 'textfield',
+        name: 'SalesMan',
+		bodyPadding: 5,
+        fieldLabel: '业务人员',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'Marker',
+        fieldLabel: '制单人员',
+		style:'margin-left:19px',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'ProdDepart',
+        fieldLabel: '所属部门',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'Permitter',
+        fieldLabel: '复核人员',
+		style:'margin-left:19px',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'ProdProject',
+        fieldLabel: '所属项目',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			}],
+	});
+
+
+var forms=Ext.create('Ext.form.Panel', {
+    bodyPadding: 5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[
+	{
+		 xtype: 'textfield',
+        name: 'Customer',
+        fieldLabel: '客户编号',
+		width:250,
+        labelWidth: 80,
+		emptyText:'请输入客户',
+        anchor: '100%',
+        listeners: {
+								render: function(field) {
+									Ext.QuickTips.init();
+									Ext.QuickTips.register({
+										target: field.el,
+										text: '按F4选择客户'
+									})
+								}
+								}
+			},{
+		style:'margin-left:9px;color:blue',
+		 xtype: 'datefield'
+        name: 'BillDate',
+        fieldLabel: '单据日期',
+		
+		width:250,
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'DeliveryAddress',
+        fieldLabel: '送货地址',
+		width:150,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'dizhiton',
+		width:99,
+        labelWidth: 70,
+		margin:"0 1",
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+		 xtype: 'textfield',
+        name: 'BillNo',
+		style:"color:blue;margin-left:9px",
+        fieldLabel: '单据号码',
+		width:250,
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'OutWareType',
+        fieldLabel: '销售出库类型',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+		 xtype: 'textfield', //多行文本域
+        name: 'MoneyStyle',
+        fieldLabel: '币别',
+        labelWidth: 70,
+		width:250,
+        anchor: '100%',
+			},{
+	             	fieldLabel: '单价是否含税',
+					xtype:'combo',
+	             	name: 'IncludeRate',
+	             	displayField: 'name',
+					labelWidth:80,
+					width:250,
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"含税", "name":"含税"},
+        					{"abbr":"未税", "name":"未税"}
+							
+					   ]
+					}),
+					value: '含税',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	         	},{
+			style:'margin-left:9px',
+		 xtype: 'textfield', //多行文本域
+        name: 'huilv',
+        fieldLabel: '汇率',
+        labelWidth: 70,
+		width:250,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'Ware',
+        fieldLabel: '仓库',
+		width:250,
+		style:"color:blue",
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+	             	fieldLabel: '国外贸易',
+					xtype:'combo',
+	             	name: 'guowaimaoyi',
+					style:"margin-left:9px",
+	             	displayField: 'name',
+					labelWidth:70,
+					width:250,
+					
+    				valueField: 'abbr',
+					store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"是", "name":"是"},
+        					{"abbr":"否", "name":"否"}
+							
+					   ]
+					}),
+					value: '是',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	         	},{
+		 xtype: 'textfield',
+        name: 'ProveBillNo',
+        fieldLabel: '凭证单号',
+		width:250,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+			style:'margin-left:9px',
+			 xtype: 'checkbox', //多行文本域
+        	name: 'fapiaoshifou',
+			hideLabels:true,
+			checkboxToggle:true,
+			
+			boxLabel:"复核后自动生成发票",
+        	items:[{boxLabel:"复核后自动生成发票",inputValue:1,checked:true}]
+			},tableds,formsg
+	]
+    
+	
+	
+});
+
+//winform窗口
+	var windowst=new  Ext.Window({
+		width:640,
+		height:570,
+		title:"销售出库",
+		closable:true,
+		resizable:false, //设置是否可以改变大小
+		draggable:true,
+		anchor: '100%',
+		items:[forms],
+		bbar:[{xtype:"splitbutton",text:'查询',width:90,menu:fielmenu},
+		{xtype:"splitbutton",text:'转单',width:90,menu:fielmenu2},
+		{xtype:"splitbutton",text:'功能',width:90,menu:fielmenu3}],
+	});
+	
+	var windows2=new  Ext.Window({
+		width:400,
+		height:300,
+		title:"物料选择",
+		closable:true,
+		resizable:false, //设置是否可以改变大小
+		draggable:true,
+		closeAction:"hide",
+	});
+	
+	function  afronction(){
+		var song=Ext.encode(forms.getForm().getValues());
+		Ext.Ajax.request(   
+           	 {  
+            //被用来向服务器发起请求默认的url  
+           		 url : "",  
+           	 //请求时发送后台的参数,既可以是Json对象，也可以直接使用“name = value”形式的字符串  
+          		  params :[{}],  
+            //请求时使用的默认的http方法  
+            method : "post",  
+            //请求成功时回调函数  
+            success : function() {  
+                Ext.ux.Toast.msg("信息提示", "成功删除所选记录！");  
+            },  
+            //请求失败时回调函数  
+            failure : function() {  
+                Ext.ux.Toast.msg("信息提示", "信息删除出错，请联系管理员!");  
+            }  
+        }  
+    );  
+				alert(song);// 序列化表单
+	}
+	
+function fromstrn(){
+	//alert(Ext.encode(forms.getForm().getValues())); 序列化表单
+	
+	//var record=grids.getSelectionModel().getLastSelected(); //获取选中的一行对象
+	
+	//	var clikd=grids.getSelectionModel().getSelected();//获取选中的一行
+	
+	//	var selecto=grids.getSelectionModel().getSelection(); //选中多行 返回数组
+			//for(var i=0;i<selecto.length;i++){
+			//	selecto[i].get('name');
+			//}
+			
+	
+	//var cout=grids.getStore().getCount(); //获取grid行数
+	
+	//var name=record.get('name');//获取值
+	
+	//for(var i=0;i<grids.store.data.length;i++){ 
+		//var grit=grids.store.getAt(i).data; //获取全部值
+		//	alert(grit.bianma);
+		//}
+//	}
+
+	//var arr=[]; //序列化表格
+			//var sni=grids.store.data;
+			//sni.each(function(record){
+			//arr.push(record.data);
+			//})
+			//alert(Ext.encode(arr));
+			//}
+	
+  //grid.getSelectionModel().selectRow(0);//默认选中第一行
+	
+	//grid.getView().refresh(); //刷新表格
+		
+	//grids.store.removeAll();//移除全部数据
+		
+	//grids.store.removeAt(0); //删除指定的行
+		
+   //var selecto=grids.getSelectionModel().getSelection(); selecto.length>0是选中的 判断是否选中一行
+		
+  //var selecto=grids.getSelectionModel().getSelection();
+		//var ston=grids.getStore(); 
+		//var selectData=selecto[0];
+		//var datainded=ston.indexOf(selectData);
+		//grids.store.removeAt(datainded); //删除选中行
+	
+	
+//	var mosld=grids.getSelectionModel().getLastSelected();
+//		mosld.set('name',123); //修改选中的列
+//		mosld.commit();
+
+	}
+</script>
+</head>
+
+<body>
+
+	</body>
+</html>
+>>>>>>> branch 'master' of http://172.20.0.117:80/1805j1/project.git
