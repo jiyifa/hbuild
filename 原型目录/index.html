@@ -155,9 +155,11 @@ Ext.onReady(function(){
 				leaf:false,
 				children:[
 					{text:'销售出库',id:'sales/Bill_of_sales.html',leaf:true},
-					{text: "收款", id:'sales/receivables.html',leaf:true},
+					{text: "预收款", id:'sales/receivables.html',leaf:true},
+					{text: "应收冲款", id:'sales/payment.html',leaf:true},
 					{text: "销售报价", id:'sales/quotation.html',leaf:true},
-					{text: "销售订单", id:'sales/order_form.html',leaf:true}
+					{text: "销售订单", id:'sales/order_form.html',leaf:true},
+					{text: "退货", id:'sales/Return_bill.html',leaf:true}
 				]
 			},{
 				text:'采购管理',
@@ -169,7 +171,8 @@ Ext.onReady(function(){
 					{text:'采购请购单',id:'purchase/buying_requisition.html',leaf:true},
 					{text: "采购费用分摊", id:'purchase/pur_apportionment.html',leaf:true},
 					{text: "采购退货", id:'purchase/Return_bill.html',leaf:true},
-					{text: "付款", id:'purchase/payable_bill.html',leaf:true},
+					{text: "预付款", id:'purchase/payable_bill_advance.html',leaf:true},
+					{text: "冲款", id:'purchase/payable_bill_scour.html',leaf:true},
 					{text: "采购入库", id:'purchase/godown_entry.html',leaf:true}
 					
 				]
