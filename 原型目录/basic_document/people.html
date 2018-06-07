@@ -2,21 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>请购</title>
+<title>人员主文件</title>
 <link rel="stylesheet" type="text/css"
-	href="../extjs/resources/css/ext-all.css" />
-<script type="text/javascript" src="../extjs/ext-all.js"></script>
-<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+	href="extjs/resources/css/ext-all.css" />
+<script type="text/javascript" src="extjs/ext-all.js"></script>
+<script type="text/javascript" src="extjs/ext-lang-zh_CN.js"></script>
 <script>
 Ext.onReady(function(){
 	Ext.BLANK_IMAGE_URL = "extjs/resources/images/default/s.gif";
 		  Ext.QuickTips.init();
 		windowst.show();
-	});
-		
-		
-		
-				var grids2 = Ext.create('Ext.grid.Panel', {
+});
+		var grids2 = Ext.create('Ext.grid.Panel', {
 				
 				plugins: [
 					Ext.create('Ext.grid.plugin.CellEditing', {
@@ -199,33 +196,12 @@ Ext.onReady(function(){
         renderTo:Ext.getBody()  
     });
 
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
 		var fielmenu2=new Ext.menu.Menu({
-			items:[{text:'销售订单转入',handler:function(){
-				mainWindow1.show();
-			}}]
-		});
-		
-		
-		var fielmenu3=new Ext.menu.Menu({
-			items:[{text:'单况状态切换',handler:function(){
-				var text =  Ext.getCmp("notestate").getValue();
-				if(text=="未结案"){
-					  Ext.getCmp("notestate").setValue("已结案");
-				}else if(text=="已结案"){
-					Ext.getCmp("notestate").setValue("无效");
-				}else if(text=="无效"){
-					Ext.getCmp("notestate").setValue("未结案");
-				}
-			  
-			}}],
+			items:[{text:'销售订单转入'}]
 		});
 
 
@@ -324,17 +300,7 @@ var grids=Ext.create('Ext.grid.Panel',{
 			 
 })
 
-var filterPanel = Ext.create('Ext.panel.Panel', {
-    bodyPadding: 6,  // 避免Panel中的子元素紧邻边框
-    width: 1985,
-	height:170,
-    items:[grids],
-	bbar:[{xtype:"label",text:'总计:',width:90},
-	{xtype:"textfield",disabled:true,width:90,margin:'0 180',value:'0.00'},
-	{xtype:"textfield",disabled:true,width:90,margin:'0',value:'0.00'},
-	{xtype:"textfield",disabled:true,width:90,margin:'0 40 0 30',value:'0.00'},
-	{xtype:"textfield",disabled:true,width:90,margin:'0 0 0 0',value:'0.00'}],
-});
+
 
 var text1 = Ext.create('Ext.form.Panel', {
     width: 300,
@@ -354,7 +320,6 @@ var text1 = Ext.create('Ext.form.Panel', {
 });
 
 
-
 var formsg=Ext.create('Ext.form.Panel', {
     bodyPadding: 5,
 	height:'100%',
@@ -362,111 +327,175 @@ var formsg=Ext.create('Ext.form.Panel', {
 	baseCls:'x-plain',
 	items:[{
 				style:'margin-left:9px;color:blue',
-				xtype: 'textfield',
+				xtype: 'datefield',
 		        name: 'SalesMan',
 				bodyPadding: 5,
-		        fieldLabel: '请购人员',
+		        fieldLabel: '出生日期',
 				width:250,
 		        labelWidth: 80,
 	        	anchor: '100%',
 			},{
 				 xtype: 'textfield',
 		        name: 'Marker',
-		        fieldLabel: '制单人员',
-				style:'margin-left:19px',
+		        fieldLabel: '政治面貌',
+				style:'margin-left:9px',
 				width:250,
+		        labelWidth: 80,
+		        anchor: '100%',
+			},
+			{
+			style:'margin-left:9px;',
+			fieldLabel: '婚姻状况',
+			xtype:'combo',
+         	name: 'IncludeRate',
+         	displayField: 'name',
+			labelWidth:80,
+			width:250,
+			valueField: 'abbr',
+			store: Ext.create('Ext.data.Store', {
+				fields: ['abbr', 'name'],
+				data : [
+					{"abbr":"type1", "name":"type1"},
+					{"abbr":"type2", "name":"type2"},
+					
+			   ]
+			})},{
+				style:'margin-left:9px;color:blue',
+				xtype: 'datefield',
+		        name: 'SalesMan',
+		        fieldLabel: '入职日期',
+		        style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+	        	anchor: '100%',
+			},{
+				style:'margin-left:9px;',
+				fieldLabel: '血型',
+				xtype:'combo',
+	         	name: 'IncludeRate',
+	         	displayField: 'name',
+	         	style:'margin-left:9px',
+				labelWidth:80,
+				width:250,
+				valueField: 'abbr',
+				store: Ext.create('Ext.data.Store', {
+					fields: ['abbr', 'name'],
+					data : [
+						{"abbr":"type1", "name":"type1"},
+						{"abbr":"type2", "name":"type2"},
+						
+				   ]
+			})},{
+				style:'margin-left:9px;color:blue',
+				xtype: 'datefield',
+		        name: 'SalesMan',
+				bodyPadding: 5,
+		        fieldLabel: '转正日期',
+		        style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+	        	anchor: '100%',
+			},{
+				style:'margin-left:9px;',
+				fieldLabel: '籍贯',
+				xtype:'combo',
+	         	name: 'IncludeRate',
+	         	displayField: 'name',
+	         	style:'margin-left:9px',
+				labelWidth:80,
+				width:250,
+				valueField: 'abbr',
+				store: Ext.create('Ext.data.Store', {
+					fields: ['abbr', 'name'],
+					data : [
+						{"abbr":"type1", "name":"type1"},
+						{"abbr":"type2", "name":"type2"},
+						
+				   ]
+			})},{
+				style:'margin-left:9px;color:blue',
+				 xtype: 'textfield',
+		        name: 'ProdDepart',
+		        fieldLabel: '试用期长',
+		        style:'margin-left:9px',
+		        emptyText:'0',
+				width:250,
+				afterLabelTextTpl:"个月",
 		        labelWidth: 80,
 		        anchor: '100%',
 			},{
 				style:'margin-left:9px;color:blue',
-				 xtype: 'textfield',
-		        name: 'ProdDepart',
-		        fieldLabel: '请购部门',
+				xtype: 'datefield',
+		        name: 'SalesMan',
+				bodyPadding: 5,
+		        fieldLabel: '离职日期',
+		        style:'margin-left:9px',
 				width:250,
 		        labelWidth: 80,
-		        anchor: '100%',
-		        enableKeyEvents: true,
-		        listeners: {
-					render: function(field) {
-						Ext.QuickTips.init();
-						Ext.QuickTips.register({
-							target: field.el,
-							text: '按F4选择客户'
-						})
-					},
-					keyup: function(textField, e) {
-						if(e.getKey() == 115) {
-							mainWindow1.show();
-						}
-					}
-				}
+	        	anchor: '100%',
 			},{
 				 xtype: 'textfield',
 		        name: 'Permitter',
-		        fieldLabel: '复核人员',
-				style:'margin-left:19px',
+		        fieldLabel: '技术职称',
+				style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+		        anchor: '100%',
+			},{
+				 xtype: 'textfield',
+		        name: 'Permitter',
+		        fieldLabel: '联系邮编',
+				style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+		        anchor: '100%',
+			},{
+				 xtype: 'textfield',
+		        name: 'Permitter',
+		        fieldLabel: '联系地址',
+				style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+		        anchor: '100%',
+			},{
+				 xtype: 'textfield',
+		        name: 'Permitter',
+		        fieldLabel: '联系电话',
+				style:'margin-left:9px',
+				width:250,
+		        labelWidth: 80,
+		        anchor: '100%',
+			},{
+				 xtype: 'textfield',
+		        name: 'Permitter',
+		        fieldLabel: '移动电话',
+				style:'margin-left:9px',
 				width:250,
 		        labelWidth: 80,
 		        anchor: '100%',
 			}],
 	});
-
-var nt=Ext.create('Ext.form.Panel', {
-    bodyPadding: 5,
-	height:'100%',
-	layout:"column",
-	baseCls:'x-plain',
-	items:[{
-				style:'margin-left:9px;color:blue',
-				xtype: 'textfield',
-		        name: 'SalesMan',
-		        fieldLabel: '表头条纹',
-				width:250,
-		        labelWidth: 80,
-	        	anchor: '100%',
-			},{
-				 xtype: 'textfield',
-		        name: 'Marker',
-		        fieldLabel: '自定义栏一',
-				style:'margin-left:9px',
-				width:250,
-		        labelWidth: 80,
-		        anchor: '100%',
-			},{
-				 xtype: 'textfield',
-		        name: 'Marker',
-		        fieldLabel: '表尾头纹',
-				style:'margin-left:9px',
-				width:250,
-		        labelWidth: 80,
-		        anchor: '100%',
-			},{
-				 xtype: 'textfield',
-		        name: 'Marker',
-		        fieldLabel: '自定义栏二',
-				style:'margin-left:9px',
-				width:250,
-		        labelWidth: 80,
-		        anchor: '100%',
-			},{
-		        xtype     : 'textareafield',
-		        style:'margin-left:9px',
-		        labelWidth: 80,
-		        grow      : true,
-		        name      : 'message',
-		        fieldLabel: '备注',
-		        anchor    : '100%'
-		    }
-		]
+var filterPanel = Ext.create('Ext.panel.Panel', {
+    items:[formsg],
 });
-
 var  tableds=Ext.create('Ext.TabPanel',{
 	width:"100%",
-	height:230,
 	autoScroll:true,
 	bodyPadding: 5,
-	items:[{title:'内容',autoScroll:true,items:[filterPanel]},{title:'备注',items:[nt]}],
+	items:[{title:'基本资料',autoScroll:true,items:[filterPanel]},{title:'其他资料',items:[
+		{
+		     xtype: 'textfield',
+		     name: 'email',
+		     fieldLabel: '表头条纹'
+	 	},
+	 	{
+	 		xtype:'textfield',
+	 		name: 'email',
+	 		fieldLabel:"自定义栏一"
+	 	}
+	]}],
 });
+
 var forms=Ext.create('Ext.form.Panel', {
     bodyPadding: 5,
 	height:'100%',
@@ -477,39 +506,61 @@ var forms=Ext.create('Ext.form.Panel', {
 			style:'margin-left:9px;color:blue',
 			xtype: 'textfield',
 	        name: 'Customer',
-	        fieldLabel: '采购请购类型',
+	        fieldLabel: '人员编号',
 			width:250,
-	        labelWidth: 80,
-			emptyText:'采购请购类型',
+	        labelWidth: 70,
+			emptyText:'',
 	        anchor: '100%',
+		},{
+			style:'margin-left:9px;color:blue',
+			xtype: 'textfield',
+	        name: 'BillDate',
+	        fieldLabel: '所属部门',
+			width:250,
+	        labelWidth: 70,
+	        anchor: '100%',
+	        enableKeyEvents: true,
+			listeners: {
+				render: function(field) {
+					Ext.QuickTips.init();
+					Ext.QuickTips.register({
+						target: field.el,
+						text: '按F4选择客户'
+					})
+				},
+
+				keyup: function(textField, e) {
+					if(e.getKey() == 115) {
+						mainWindow1.show();
+					}
+				}
+			}
 		},{
 			style:'margin-left:9px;color:blue',
 			xtype: 'datefield',
 	        name: 'BillDate',
-	        fieldLabel: '单据日期',
+	        fieldLabel: '人员姓名',
 			width:250,
 	        labelWidth: 70,
 	        anchor: '100%',
 		},{
 			style:'margin-left:9px;',
-			fieldLabel: '单况',
+			fieldLabel: '性别',
 			xtype:'combo',
          	name: 'IncludeRate',
          	displayField: 'name',
-			labelWidth:80,
+			labelWidth:70,
 			width:250,
 			valueField: 'abbr',
-			id:'notestate',
 			store: Ext.create('Ext.data.Store', {
 				fields: ['abbr', 'name'],
 				data : [
-					{"abbr":"已结案", "name":"已结案"},
-					{"abbr":"无效", "name":"无效"},
-					{"abbr":"未结案", "name":"未结案"}
+					{"abbr":"男性", "name":"男性"},
+					{"abbr":"女性", "name":"女性"},
 					
 			   ]
 			}),
-			value: '无效',
+			value: '男性',
 			typeAhead: true,
 			mode: 'local',
 			triggerAction: 'all',
@@ -518,12 +569,20 @@ var forms=Ext.create('Ext.form.Panel', {
 			style:'margin-left:9px',
 			 xtype: 'textfield',
 	        name: 'BillNo',
-			style:"color:blue;margin-left:9px",
-	        fieldLabel: '单据号码',
+	        fieldLabel: '英文姓名',
 			width:250,
 	        labelWidth: 70,
 	        anchor: '100%',
-		},tableds,formsg
+		},{
+			style:'margin-left:9px',
+			 xtype: 'textfield',
+	        name: 'BillNo',
+			style:"color:blue;margin-left:9px",
+	        fieldLabel: '身份证号',
+			width:250,
+	        labelWidth: 70,
+	        anchor: '100%',
+		},tableds
 	]
     
 	
@@ -533,17 +592,16 @@ var forms=Ext.create('Ext.form.Panel', {
 //winform窗口
 	var windowst=new  Ext.Window({
 		width:640,
-		title:"采购请购单（浏览...）",
+		title:"人员主文件设定（浏览...）",
 		closable:true,
 		resizable:false, //设置是否可以改变大小
-		draggable:true,
 		maximizable:true,
 		minimizable:true,
+		draggable:true,
 		anchor: '100%',
 		items:[forms],
 		bbar:[
-		{xtype:"splitbutton",text:'转单',width:90,menu:fielmenu2},
-		{xtype:"splitbutton",text:'功能',width:90,menu:fielmenu3}],
+		{xtype:"splitbutton",text:'设定',width:90,menu:fielmenu2}]
 	});
 	
 	var windows2=new  Ext.Window({

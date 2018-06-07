@@ -1,15 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<!--预付款    和 应付冲款 和在一起？，还是分开-->
+	<!--
+	作者：1592755226@qq.com
+	时间：2018-06-07
+	描述：冲款单
+-->
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>ON</title>
-		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all-gray.css
-			" />
-		<script type="text/javascript" src="../extjs/ext-all.js"></script>
-		<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
-		<script>
+		<link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-gray.css" />
+		<script type="text/javascript" src="extjs/ext-all.js"></script>
+		<script type="text/javascript" src="extjs/ext-lang-zh_CN.js"></script>
+		<title>冲款单</title>
+	<script>
 			Ext.define('User', {
 				extend: 'Ext.data.Model',
 				fields: ['lh', 'name', 'dizhi', 'lianxi']
@@ -75,18 +78,7 @@
 				}]
 			});
 
-			var genderStore = Ext.create("Ext.data.Store", {
-				fields: ["Name", "Value"],
-				data: [
-					{
-						Name: "预付冲款及冲付款",
-						Value: 1
-					},{
-						Name: "预付款",
-						Value: 2
-					}
-				]
-			});
+	
 			var genderStore_gongyingshang = Ext.create("Ext.data.Store", {
 				fields: ["Name", "Value"],
 				data: [{
@@ -425,202 +417,7 @@
 				autoScroll: false,
 
 			})
-			var grids2 = Ext.create('Ext.grid.Panel', {
-
-				listeners: {
-					containerdblclick: function(grid, e, eOpts) { //单击事件
-						grid.getStore().add({
-							'name': '12',
-							'dizhi': '',
-							'bianma': '',
-							'lianxi': ''
-						});
-
-					},
-					itemcontextmenu: function() {
-
-						/*e.preventDefault();
-						new Ext.menu.Menu({
-								items: [{
-									xtype: 'textfield',
-									text: 'Lost',
-									pressed: false,
-									handler: function() {
-										alert();
-									}
-								}, {
-									xtype: '',
-									text: '娓呴櫎鏂规',
-									pressed: false,
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '閫夋嫨鏂规',
-									pressed: false,
-									menu: new Ext.menu.Menu({
-										items: [{
-											text: '棰勮鏂规',
-											pressed: false
-										}]
-									}),
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '瀵煎嚭鑷矱xcel',
-									pressed: false,
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '缃戞牸鎵撳嵃',
-									pressed: false,
-									handler: function() {}
-								}]
-							}
-
-						).showAt(e.getXY());*/
-					}
-				},
-				plugins: [
-					Ext.create('Ext.grid.plugin.CellEditing', {
-						clicksToEdit: 1
-					})
-				],
-				columns: [{
-						header: '(应付冲款单号)',
-						xtype: 'rownumberer',
-						dataIndex: 'lh',
-						width: 100,
-						sortable: false
-					},
-
-					{
-						header: '(来源别)',
-						dataIndex: 'name',
-						width: 100,
-					},
-					{
-						header: '(来源单号)',
-						dataIndex: 'dizhi',
-						width: 120,
-
-					},
-					{
-						header: '(预付金额)',
-						dataIndex: 'bianma'
-					},
-					{
-						header: '(部门编号)',
-						dataIndex: 'lianxi'
-					},
-					{
-						header: '(部门名称)',
-						dataIndex: 'lianxi'
-					},
-					{
-						header: '取用预付金额',
-						dataIndex: 'lianxi'
-					},
-					{
-						header: '(来源摘要)',
-						dataIndex: 'lianxi'
-					}
-				],
-				height: 170,
-				width: 1971,
-				autoScroll: false,
-
-			})
-
-			var grids3 = Ext.create('Ext.grid.Panel', {
-
-				/*listeners: {
-					containerdblclick: function(grid, e, eOpts) { //单击事件
-						grid.getStore().add({
-							'name': '12',
-							'dizhi': '',
-							'bianma': '',
-							'lianxi': ''
-						});
-
-					},
-					itemcontextmenu: function() {
-
-						e.preventDefault();
-						new Ext.menu.Menu({
-								items: [{
-									xtype: 'textfield',
-									text: 'Lost',
-									pressed: false,
-									handler: function() {
-										alert();
-									}
-								}, {
-									xtype: '',
-									text: '娓呴櫎鏂规',
-									pressed: false,
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '閫夋嫨鏂规',
-									pressed: false,
-									menu: new Ext.menu.Menu({
-										items: [{
-											text: '棰勮鏂规',
-											pressed: false
-										}]
-									}),
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '瀵煎嚭鑷矱xcel',
-									pressed: false,
-									handler: function() {}
-								}, {
-									xtype: '',
-									text: '缃戞牸鎵撳嵃',
-									pressed: false,
-									handler: function() {}
-								}]
-							}
-
-						).showAt(e.getXY());
-					}
-				},
-				plugins: [
-					Ext.create('Ext.grid.plugin.CellEditing', {
-						clicksToEdit: 1
-					})
-				],*/
-				columns: [{
-						header: '预付金额',
-						xtype: 'rownumberer',
-						dataIndex: 'lh',
-						width: 100,
-						sortable: false
-					},
-
-					{
-						header: '来源别',
-						dataIndex: 'name',
-						width: 180,
-					},
-					{
-						header: '来源单号',
-						dataIndex: 'dizhi',
-						width: 180,
-
-					},
-					{
-						header: '摘要',
-						dataIndex: 'bianma',
-						width: 300,
-					}
-				],
-				height: 150,
-				width: 1971,
-				autoScroll: false,
-
-			})
+			
 			var filterPane1 = Ext.create('Ext.panel.Panel', {
 				bodyPadding: 6, // 避免Panel中的子元素紧邻边框
 				width: 1745,
@@ -629,93 +426,30 @@
 				bbar: [{
 						xtype: "label",
 						text: '总计:',
+						margin: '0 0 0 5',
 						width: 90
 					},
 					{
 						xtype: "textfield",
 						disabled: true,
 						width: 65,
-						margin: '0 0 0 790',
+						margin: '0 0 0 170',
 						value: '0.00'
 					}
 				],
 			});
 
-			var filterPane2 = Ext.create('Ext.panel.Panel', {
-				bodyPadding: 6, // 避免Panel中的子元素紧邻边框
-				width: 800,
-				height: 190,
-				items: [grids2],
-				bbar: [{
-						xtype: "label",
-						text: '总计:',
-						width: 90
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 120',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 105',
-						value: '0.00'
-					}
-				],
-			});
+			
 
-			var filterPane3 = Ext.create('Ext.panel.Panel', {
-				bodyPadding: 6, // 避免Panel中的子元素紧邻边框
-				width: 700,
-				height: 190,
-				items: [grids3],
-				bbar: [{
-						xtype: "label",
-						text: '总计:',
-						width: 90
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 120',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 105',
-						value: '0.00'
-					}
-				],
-			});
-
+		
 			var items1 = [{
-				title: '内容',
+				title: '预付冲款及付款',
 				autoScroll: true,
-				items: [filterPane1]
-			}, {
-				title: '取用预付',
-				autoScroll: true,
-				items: [filterPane2]
-			}, {
-				id:"textarea_h1",
-				title: '备注',
-				xtype: 'textarea',
-			}];
-
-			var items2 = [{
-				title: '预付',
-				autoScroll: true,
-				items: [filterPane3],
+				items: [filterPane1],
 			}, {
 				id:"textarea_h2",
 				title: '备注',
+				autoScroll: true,
 				xtype: 'textfield',
 			}];
 
@@ -935,49 +669,13 @@
 						id: "combo_s1",
 						editable : false,
 						fieldLabel: '冲款类型',
-						xtype: 'combo',
+						xtype: 'textfield',
 						name: 'guowaimaoyi',
 						style: 'margin-left:10px;',
 						labelWidth: 70,
 						width: 250,
-						displayField: 'Name',
-						valueField: 'Value',
-						store: genderStore,
-						value: '预付冲款及冲付款',
-						typeAhead: true,
-						mode: 'local',
-						triggerAction: 'all',
-						selectOnFocus: true,
-						listeners: {
-							"select": function() {
-
-								if(this.getValue() == 2) {
-										var test=	tableds.removeAll();
-									Ext.getCmp('menus_1').setDisabled(true);
-									Ext.getCmp('menus_2').setDisabled(true);
-									
-							
-									
-									
-									tableds.add(items2);
-								
-								
-								} else if(this.getValue() == 1) {
-									tableds.removeAll();
-									
-						
-								
-									Ext.getCmp('menus_1').setDisabled(false);
-									Ext.getCmp('menus_2').setDisabled(false);
-									
-									
-									tableds.add(items1);
-									
-									
-								}
-
-							}
-						},
+						value: "预付冲款及付款",
+						disabled: true,
 					},
 					{
 						style: 'margin-left:12px;',
@@ -1021,14 +719,16 @@
 						xtype: "splitbutton",
 						text: '载入',
 						width: 90,
-						menu: fielmenu
+						menu: fielmenu,
+						
 					},
 					{
 						id:"menus_2",
 						xtype: "splitbutton",
 						text: '自动计算',
 						width: 90,
-						menu: fielmenu2
+						menu: fielmenu2,
+						
 					}
 				],
 			});

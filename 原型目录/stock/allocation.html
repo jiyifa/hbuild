@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<!--调拨-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>调拨</title>
+		<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css" />
+		<script type="text/javascript" src="../extjs/ext-all.js"></script>
+		<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+		<script>
+				Ext.onReady(function(){
+		Ext.BLANK_IMAGE_URL = "../extjs/resources/themes/images/access/tree/s.gif";
+	 	 Ext.QuickTips.init();
+		windowst.show();
+	});	
+	var fielmenu=new Ext.menu.Menu({
+		items:[{text:'历史交易查询',handler:function(){
+			afronction();//调用点击事件的方法
+					}},{text:'利润预估查询',handler:function(){
+				afronction2();	//调用点击事件的方法
+				}
+					}]
+	});
+	var fielmenu3=new Ext.menu.Menu({
+		items:[{text:'批号设定'},{text:'条码打印'}]
+	});
+	
+	var Panel2=Ext.create('Ext.grid.Panel',{
+	plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（-----）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 70,
+								sortable: false,
+								style:'margin-left:1.5rem',
+								
+        					},
+			],
+   			 height:160,
+			 width:100,
+			 autoScroll:false,
+})
+	var Panel3=Ext.create('Ext.grid.Panel',{
+	plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（仓库编号）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 100,
+								sortable: false
+        					},
+        					{ header: '仓库名称',  dataIndex: 'name', width: 150,},
+			],
+			style:'margin-left:2rem;',
+   			 height:160,
+			 width:350,
+			 autoScroll:false,
+})
+	var grids=Ext.create('Ext.grid.Panel',{
+    
+	 listeners:{
+				containerdblclick: function(grid, e, eOpts){ //单击事件
+	    						grid.getStore().add({'name':'12', 'dizhi':'','bianma':'','lianxi':''});
+    						
+    					},
+					itemcontextmenu:function(){
+					
+    						e.preventDefault();
+    						new Ext.menu.Menu({
+    							items:[{
+    								xtype: 'textfield',
+    								text: 'Lost',
+    								pressed: false,
+    								handler:function(){
+											alert();
+										}
+    							},{
+    								xtype: '',
+    								text: '娓呴櫎鏂规',
+    								pressed: false,
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '閫夋嫨鏂规',
+    								pressed: false,
+    								menu:new Ext.menu.Menu({
+    									items:[{
+    										text:'棰勮鏂规',
+    										pressed: false
+    									}]
+    								}),
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '瀵煎嚭鑷矱xcel',
+    								pressed: false,
+    								handler: function(){}
+    							},{
+    								xtype: '',
+    								text: '缃戞牸鎵撳嵃',
+    								pressed: false,
+    								handler: function(){}
+    							}]
+    						}
+    						
+    						).showAt(e.getXY());
+				}
+			},plugins: [
+        				Ext.create('Ext.grid.plugin.CellEditing', {
+            				clicksToEdit: 1
+        				})
+    				],
+	columns: [
+				 {header: '（栏号）',
+	                    		xtype: 'rownumberer',
+	                    		dataIndex: 'lh', 
+	                    		width: 50,
+								sortable: false
+        					},
+					
+        		{ header: '物料编号',  dataIndex: 'name', width: 150,},
+       			 { header: '物料名称', dataIndex: 'dizhi',width: 150,editor: { xtype:'textfield',
+				 	listeners:{
+						focus:function(grid, e, eOpts){
+								windows2.show();
+								}
+							
+					}
+				 } },
+       				 { header: '规格型号', dataIndex: 'bianma' },
+					 { header: '单位名称', dataIndex: 'lianxi',width:120 },
+					 { header: '数量', dataIndex: 'lianxi'},
+					 { header: '批号', dataIndex: 'lianxi' },
+					 { header: '分录备注', dataIndex: 'lianxi' },
+	  					 ],
+   			 height: 220,
+			 width:1600,
+			 autoScroll:false,
+			 
+})
+	
+	var filterPanel4=Ext.create('Ext.form.Panel',{
+	bodyPadding:5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[{
+		xtype:'textfield',
+		name:'Documents',
+		fieldLabel:'自定义栏一',
+		width:340,
+		lableWidth:80,
+		anchor:'100%',
+	},{
+		style:'margin-left:1rem;',
+		xtype:'textfield',
+		name:'Documents',
+		fieldLabel:'自定义栏二',
+		width:340,
+		lableWidth:80,
+		anchor:'100%',
+	},{
+		xtype:'textarea',
+		name:'Remark',
+		fieldLabel: '备注',
+		labelWidth:100,
+		width:695,
+		height:240,
+	}
+	]
+})
+	var filterPanel = Ext.create('Ext.panel.Panel', {
+    bodyPadding: 6,  // 避免Panel中的子元素紧邻边框
+    width: 1100,
+	height:260,
+    items:[grids],
+	bbar:[{xtype:"label",text:'总计:',width:90},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 180',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 40 0 30',value:'0.00'},
+	{xtype:"textfield",disabled:true,width:90,margin:'0 0 0 0',value:'0.00'}],
+});
+var  tableds=Ext.create('Ext.TabPanel',{
+	width:"100%",
+	height:320,
+	autoScroll:true,
+	bodyPadding: 5,
+	items:[
+	{title:'内容',autoScroll:true,items:[filterPanel]},
+	{title:'备注',autoScroll:true,items:[filterPanel4]}
+	],
+});
+
+var formsg=Ext.create('Ext.form.Panel', {
+    bodyPadding: 5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[{
+		 xtype: 'textfield',
+        name: 'Marker',
+        fieldLabel: '制单人员',
+		width:350,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		 xtype: 'textfield',
+        name: 'Permitter',
+        fieldLabel: '复核人员',
+		style:'margin-left:19px',
+		width:350,
+        labelWidth: 80,
+        anchor: '100%',
+			}],
+	});
+	
+	var forms=Ext.create('Ext.form.Panel', {
+    bodyPadding: 5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[
+	{
+		style:'color:blue',
+		 xtype: 'textfield',
+        name: 'Customer',
+        fieldLabel: '调出仓库',
+		width:350,
+        labelWidth: 80,
+        anchor: '100%',
+        enableKeyEvents:true,
+        listeners:{
+        	keyup:function(textField,e){
+        		if(e.getKey()==115){
+        			windows2.show();
+        		}
+        	}
+        
+        }
+			},{
+		style:'margin-left:9px;color:blue',
+		 xtype: 'datefield',
+        name: 'BillDate',
+        fieldLabel: '单据日期',
+		width:350,
+        labelWidth: 70,
+        anchor: '100%',
+			},{
+		style:'color:blue',
+		 xtype: 'textfield',
+        name: 'DeliveryAddress',
+        fieldLabel: '调入仓库',
+		width:350,
+        labelWidth: 80,
+        anchor: '100%',
+			},{
+		style:'margin-left:9px;color:blue',
+		 xtype: 'textfield',
+        name: 'dizhiton',
+        fieldLabel: '单据号码',
+		width:350,
+        labelWidth: 70,
+        anchor: '100%',
+			},tableds,formsg
+	]
+});
+
+var butts=Ext.create('Ext.form.Panel',{
+	bodyPadding:5,
+	height:'100%',
+	layout:'column',
+	baseCls:'x-plain',
+	items:[{
+		style:'margin-left:-5px;',
+		width:80,
+		 xtype: 'button',
+		 text:'全选',
+		
+	},{
+		style:'margin-left:2px;',
+		width:80,
+		 xtype: 'button',
+		 text:'全选',
+		
+	},{
+			style:'margin-left:2px;',
+		width:80,
+		 xtype: 'button',
+		 text:'全清',
+		
+	},{
+			style:'margin-left:2px;',
+	width:80,
+		 xtype: 'button',
+		 text:'以下全选',
+		
+	},{
+			style:'margin-left:2px;',
+		width:80,
+		 xtype: 'button',
+		 text:'以下全清',
+		
+	},{
+		style:'margin-left:2px;',
+		width:80,
+		 xtype: 'button',
+		 text:'新增记录',
+		
+	}]
+})
+var form2s=Ext.create('Ext.form.Panel',{
+	bodyPadding:5,
+	height:'100%',
+	layout:"column",
+	baseCls:'x-plain',
+	items:[{
+		xtype:'combo',
+		name:'Custmer2',
+		/*fieldLabel:'',*/
+		/*emptyText:'请输入客户',*/
+			displayField: 'name',
+			valueField: 'abbr',
+		width:200,
+		lableWidth:80,
+		anchor:'100%',
+		store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					{"abbr":"仓库编号", "name":"仓库编号"},
+        					{"abbr":"仓库名称", "name":"仓库名称"},
+        					{"abbr":"仓库简称", "name":"仓库简称"},
+        					{"abbr":"英文名称", "name":"英文名称"},
+        					{"abbr":"联系人员", "name":"联系人员"},
+        					{"abbr":"联系电话", "name":"联系电话"},
+        					{"abbr":"仓库地址", "name":"仓库名称"},
+        					{"abbr":"备注", "name":"备注"}						
+					   ]
+					}),
+					value: '仓库编号',
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	},{
+		style:'margin-left:1rem;',
+		width:300,
+		 xtype: 'textfield',
+	},{
+		/*style:'margin-left:1.5rem;',*/
+		xtype:'combo',
+		name:'Custmer2',
+		/*fieldLabel:'',*/
+		/*emptyText:'请输入客户',*/
+			displayField: 'name',
+			valueField: 'abbr',
+		width:200,
+		lableWidth:80,
+		anchor:'100%',
+		store: Ext.create('Ext.data.Store', {
+						fields: ['abbr', 'name'],
+    					data : [
+        					/*{"abbr":"仓库编号", "name":"仓库编号"},
+        					{"abbr":"仓库名称", "name":"仓库名称"},
+        					{"abbr":"仓库简称", "name":"仓库简称"},
+        					{"abbr":"英文名称", "name":"英文名称"},
+        					{"abbr":"联系人员", "name":"联系人员"},
+        					{"abbr":"联系电话", "name":"联系电话"},
+        					{"abbr":"仓库地址", "name":"仓库名称"},
+        					{"abbr":"备注", "name":"备注"}		*/				
+					   ]
+					}),
+				/*	value: '仓库编号',*/
+        			typeAhead: true,
+        			mode: 'local',
+        			triggerAction: 'all',
+        			selectOnFocus:true,
+        			
+	},{
+		style:'margin-left:1rem;',
+		width:200,
+		width:80,
+		 xtype: 'button',
+		 text:'取回',
+	},butts,Panel2,Panel3
+	]
+})
+
+var windowst=new  Ext.Window({
+		width:755,
+		height:500,
+		title:"调拨单",
+		closable:true,
+		resizable:true,//设置是否可以改变大小
+		maximizable : true,
+		draggable:true,
+		anchor: '100%',
+		items:[forms],
+		bbar:[/*{xtype:"splitbutton",text:'查询',width:90,menu:fielmenu},*/
+	/*	{xtype:"splitbutton",text:'转单',width:90,menu:fielmenu2},*/
+		{xtype:"splitbutton",text:'功能',width:90,menu:fielmenu3}],
+	});
+	var windows2=new  Ext.Window({
+		width:550,
+		height:300,
+		title:"单选--仓库设定",
+		closable:true,
+		 maximizable : true,
+		resizable:true, //设置是否可以改变大小
+		draggable:true,
+		closeAction:"hide",
+		items:[form2s],
+	});
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
