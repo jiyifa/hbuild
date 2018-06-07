@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	
-	<!--应收冲款和预付款放一起？，不合适的话讨论一下？区分开来-->
+	<!--预付款-->
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -29,23 +29,6 @@ var fielmenu=new Ext.menu.Menu({
 	});
 	
 
-var stroedt=Ext.create('Ext.data.Store', {
-			 model: 'User',
-			 fields:['name', 'dizhi','bianma', 'bianma','lianxi'],
-			data:{'items':[
-				{ 'name': '10111',  "dizhi":"北京",  "bianma":"40016","lianxi":"李忠"  },
-				{ 'name': '10112',  "dizhi":"上海",  "bianma":"68016" ,"lianxi":"朱经理"},
-				{ 'name': '10113', "dizhi":"天津",  "bianma":"408973" ,"lianxi":"周总" },
-				{ 'name': '10114', "dizhi":"重庆", "bianma":"404567" ,"lianxi":"刘经理" }
-			]},
-				proxy: {
-					type: 'memory',
-					reader: {
-						type: 'json',
-						root: 'items'
-					}
-				}
- });
 
 
 
@@ -144,102 +127,7 @@ var grids=Ext.create('Ext.grid.Panel',{
 
 
 
-var grids1=Ext.create('Ext.grid.Panel',{
-    
-	 listeners:{
-				containerdblclick: function(grid, e, eOpts){ //单击事件
-	    						grid.getStore().add({'accountsReceivable':'12', 'origin':'销售订单','originOrder':'20180605','receivableAdvance':'1000','departmentNumber':'1','departmentName':'直销部','useReceivableAdvance':'1000','sourceSummary':'sss'});
-    						
-    					},
-					itemcontextmenu:function(){
-					
-    						e.preventDefault();
-    						new Ext.menu.Menu({
-    							items:[{
-    								xtype: 'textfield',
-    								text: 'Lost',
-    								pressed: false,
-    								handler:function(){
-											alert();
-										}
-    							},{
-    								xtype: '',
-    								text: '11',
-    								pressed: false,
-    								handler: function(){}
-    							},{
-    								xtype: '',
-    								text: '11',
-    								pressed: false,
-    								menu:new Ext.menu.Menu({
-    									items:[{
-    										text:'11',
-    										pressed: false
-    									}]
-    								}),
-    								handler: function(){}
-    							},{
-    								xtype: '',
-    								text: '111',
-    								pressed: false,
-    								handler: function(){}
-    							},{
-    								xtype: '',
-    								text: '111',
-    								pressed: false,
-    								handler: function(){}
-    							}]
-    						}
-    						
-    						).showAt(e.getXY());
-				}
-			},plugins: [
-        				Ext.create('Ext.grid.plugin.CellEditing', {
-            				clicksToEdit: 1
-        				})
-    				],
-	columns: [
-				 {header: '（应收冲款单账号）',
-	                    		xtype: 'rownumberer',
-	                    		dataIndex: 'accountsReceivable', 
-	                    		width: 120,
-								sortable: false
-        					},
-					
-        		{ header: '（来源别）',  dataIndex: 'origin', width: 100,},
-       			 { header: '（来源单号）', dataIndex: 'originOrder',width: 120,editor: { xtype:'textfield',
-       			  enableKeyEvents:true,
-				 	listeners:{
-					//f4键盘事件
-		              keyup:function(textField, e){
-		
-		                     if(e.getKey() == 115){
-		
-		                        windowsGoods.show();
-		
-		                     }
-		              },
-		              //悬浮提示
-		            render: function (field, p) { 
-					Ext.QuickTips.init(); 
-					Ext.QuickTips.register({ 
-					target: field.el, 
-					text: 'F4' 
-					}) 
-				} 
-		     }
-				 } },
-       				 { header: '（预收余款）', dataIndex: 'receivableAdvance' },
-					 { header: '（部门编号）', dataIndex: 'departmentNumber' },
-					 { header: '（部门名称）', dataIndex: 'departmentName'},
-					 { header: '（取用预收金额）', dataIndex: 'useReceivableAdvance' },
-					 { header: '（来源摘要）', dataIndex: 'sourceSummary' }
-   					 ],
-   			 height: 130,
-			 width:871,
-			 autoScroll:false,
-			 
-})
+
 
 
 
@@ -270,73 +158,11 @@ var filterPanel = Ext.create('Ext.panel.Panel', {
 				],
 });
 
-//取用预算
-var filterPanel1 = Ext.create('Ext.panel.Panel', {
-    bodyPadding: 6,  // 避免Panel中的子元素紧邻边框
-    width: 850,
-	height:170,
-    items:[grids1],
-	bbar: [{
-						xtype: "label",
-						text: '总计:',
-						width: 90
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 130',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 105',
-						value: '0.00'
-					}
-				],
-});
 
 
 
-//收款冲款备注
-var filterPanel2 = Ext.create('Ext.panel.Panel', {
-    bodyPadding: 10, // 避免Panel中的子元素紧邻边框
-    bodyMargin:10,
-    width: 540,
-	height:170,
-	layout:"column",
-	baseCls:'x-plain',
-    items:[{
-		xtype: 'textfield',
-        name: 'Marker',
-        fieldLabel: '自定义一',
-		width:250,
-		style:'margin-left:5px',
-        labelWidth: 60,
-        anchor: '100%',
-			},
-    {
-    	xtype: 'textfield',
-        name: 'Marker',
-        style:'margin-left:5px',
-        fieldLabel: '自定义二',
-		width:250,
-        labelWidth: 60,
-        anchor: '100%',
-    },
-     {
-    	xtype: 'textarea',
-        name: 'Marker',
-        style:'margin:30px',
-        fieldLabel: '备注',
-		width:480,
-        labelWidth: 30,
-        anchor: '100%',
-    }
-    ]
-});
+
+
 
 
 
@@ -429,19 +255,7 @@ var filterPanel4= Ext.create('Ext.panel.Panel', {
 
 
 
-var items1=[{
-					title: '内容',
-					autoScroll: true,
-					items: [filterPanel]
-				}, {
-					title: '取用预付',
-					autoScroll: true,
-					items: [filterPanel1]
-				},{
-					title: '备注',
-					autoScroll:true,
-					items:[filterPanel2]
-				}];
+
 
 
 var items2=[{
@@ -459,7 +273,7 @@ var tableds = Ext.create('Ext.TabPanel', {
 				height: 225,
 				//autoScroll: true,
 				bodyPadding: 5,
-				items: items1,
+				items: items2,
 				autoDestroy:false
 			});
 
@@ -730,70 +544,12 @@ var forms=Ext.create('Ext.form.Panel', {
         labelWidth: 80,
         anchor: '100%',
 			},{
-	             	fieldLabel: '应收冲款类型',
-					xtype:'combo',
-	             	name: 'chongkuanleixing',
-					style:"margin-left:9px",
-	             	displayField: 'name',
-					labelWidth:80,
-					width:250,
-    				valueField: 'abbr',
-    				
-						listeners: { //选择一行后触发的事件 
-						'select': function() {
-				
-							var url = this.getValue(); //得到valueField的值 
-							if(url == '预收款') {
-								Ext.getCmp('gongneng').setDisabled(true);
-								Ext.getCmp('zdjs').setDisabled(true);
-								tableds.removeAll();
-								tableds.add(items2);
-								
-							}else if(url == '收款冲款'){
-								//console.info("启用控件");
-								tableds.removeAll();
-								tableds.add(items1);
-								
-								Ext.getCmp('gongneng').setDisabled(false);
-								Ext.getCmp('zdjs').setDisabled(false);
-							}
-						}
-					},
-					valueField:'abbr',
-					store: Ext.create('Ext.data.Store', {
-						fields: ['abbr', 'name'],
-						data: [{
-								"abbr": "预收款",
-								"name": "预收款"
-							},
-							{
-								"abbr": "收款冲款",
-								"name": "收款冲款(预收冲应收)"
-							}
-
-						]
-					}),
-					value: '收款冲款',
-        			typeAhead: true,
-        			mode: 'local',
-        			triggerAction: 'all',
-        			selectOnFocus:true,
-        	
-	         },{
+		style:'margin-left:9px',
 		xtype: 'datefield',
         name: 'endRece',
         fieldLabel: '终止月账',
 		width:250,
         labelWidth: 80,
-        anchor: '100%',
-			},{
-		style:'margin-left:9px;',
-	 	xtype: 'textfield',
-        name: 'ProveBillNo',
-        fieldLabel: '凭证单号',
-		width:250,
-        labelWidth: 80,
-        disabled:true,
         anchor: '100%',
 			},tableds,formsg]
 });
@@ -801,8 +557,8 @@ var forms=Ext.create('Ext.form.Panel', {
 //winform窗口
 	var windowst=new  Ext.Window({
 		width:640,
-		height:570,
-		title:"应收冲款单",
+		height:520,
+		title:"预付款单",
 		closable:true,
 		resizable:false, //设置是否可以改变大小
 		draggable:true,
@@ -810,9 +566,7 @@ var forms=Ext.create('Ext.form.Panel', {
 		minimizable: true, 
 		maximizable:true, 
 		items:[forms],
-		bbar:[{xtype:"splitbutton",id:"gongneng",text:'功能',width:90,menu:fielmenu},
-		{xtype:"splitbutton",id:"zdjs",text:'自动计算',width:90,menu:fielmenu2},
-		],
+		
 	});
 	
 	//物料主文件
