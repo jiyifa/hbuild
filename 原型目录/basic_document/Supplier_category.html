@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--供应商类别维护-->
+<title>供应商类别设定</title>
+<link rel="stylesheet" type="text/css"
+	href="../extjs/resources/css/ext-all.css" />
+<script type="text/javascript" src="../extjs/ext-all.js"></script>
+<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+<script>
+	Ext.onReady(function(){
+		Ext.BLANK_IMAGE_URL = "extjs/resources/images/default/s.gif";
+	    Ext.QuickTips.init();
+		mainWindow.show();
+});
+
+
+
+
+
+
+
+
+var formpalcd=Ext.create('Ext.form.Panel', { //表单
+    bodyPadding: 5,
+    width:'100%',
+    // 将会通过 AJAX 请求提交到此URL
+   // url: 'save-form.php',
+    // 表单域 Fields 将被竖直排列, 占满整个宽度
+    layout: 'column',
+    defaults: {
+        anchor: '100%'
+    },
+
+    // The fields
+    defaultType: 'textfield',
+    items: [{
+			xtype: 'textfield',
+       		name: 'supplierId',
+			fieldLabel: '类别编号',
+       		labelWidth: 80
+			},{
+			 xtype: 'textfield',
+	        name: 'address',
+	        fieldLabel: '类别名称',
+	        labelWidth: 80,
+	        anchor: '100%',
+			},{
+			 xtype: 'textfield',
+	        name: 'address',
+	        fieldLabel: '英文名称',
+	        labelWidth: 80,
+	        anchor: '100%',
+			},{
+			xtype:'textarea',
+			name:'Remark',
+			fieldLabel: '备注',
+			labelWidth: 80,
+			anchor: '100%',
+			}]
+});
+
+
+
+var mainWindow = new Ext.Window({
+		
+		width:300,
+		height:200,
+		title:"供应商类别设定",
+		closable:true,
+		resizable:false, //设置是否可以改变大小
+		draggable:true, //设
+		items:[formpalcd],
+		
+	});
+
+function fromaction(){
+	alert(Ext.encode(formpalcd.getForm().getValues()));// 序列化表单
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css"
+		  href="../extjs/resources/css/ext-all.css" />
+	<script type="text/javascript" src="../extjs/ext-all.js"></script>
+	<script type="text/javascript" src="../extjs/ext-lang-zh_CN.js"></script>
+	<script>
+        Ext.onReady(function(){
+            Ext.create("Ext.window.Window",{
+                title:'单据类型设定',
+                height:220,
+                width:280,
+                constrain:true,
+                modal:true,
+                plain:true,
+                autoScroll:true,
+                icon:'',
+                html:'',
+                items:[{
+                    xtype:"form",
+                    items:[{
+                            xtype: 'textfield',
+                            name: 'photo',
+                            fieldLabel: '单据类别',
+                            style:"margin-left:10px;margin-top:10px",
+                            labelWidth: 85
+                        },{
+                        xtype: 'textfield',
+                        name: 'photo',
+                        fieldLabel: '类型编号',
+                        style:"margin-left:10px;",
+                        labelWidth: 85
+                    },{
+                        xtype: 'textfield',
+                        name: 'photo',
+                        fieldLabel: '类型名称',
+                        style:"margin-left:10px",
+                        labelWidth: 85
+                    },{
+                        xtype: 'textfield',
+                        name: 'photo',
+                        fieldLabel: '英文名称',
+                        style:"margin-left:10px",
+                        labelWidth: 85
+                    },{
+                        xtype: 'textarea',
+                        name: 'photo',
+                        fieldLabel: '备注',
+                        style:"margin-left:10px",
+                        labelWidth: 85
+                    }]
+                }]
+            }).show();
+        })
+
+	</script>
+</head>
+<body>
+</body>
+</html>
