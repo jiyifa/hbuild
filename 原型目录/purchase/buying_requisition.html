@@ -14,199 +14,113 @@ Ext.onReady(function(){
 		windowst.show();
 	});
 		
-		
-		
-				var grids2 = Ext.create('Ext.grid.Panel', {
-				
-				plugins: [
-					Ext.create('Ext.grid.plugin.CellEditing', {
-						clicksToEdit: 1
-					})
-				],
-				columns: [{
-						header: '',
-						xtype: 'rownumberer',
-						dataIndex: 'lh'
-					},
+	 Ext.define('User', {
+	     extend: 'Ext.data.Model',
+	     fields: [
+	         {name: 'flag', type: 'string'},
+	          {name: 'billno', type: 'string'},
+	           {name: 'billdate', type: 'string'}
+	     ]
+	 });
+	 var store = Ext.create('Ext.data.Store', {
+	     model: 'User',
+	     proxy: {
+	         type: 'ajax',
+	         url: 'http://127.0.0.1:8080/purchase/getPurchase',
+	         reader: {
+	             type: 'json',
+	             root: 'data'
+	         }
+	     },
+	     autoLoad: true
+	 });
 
-					{
-						header: '(---)',
-						dataIndex: 'name',
-						width:50
-					}
-				],
-				height: '100%',
-				width: '100%'
+	var grids2 = Ext.create('Ext.grid.Panel', {
+		plugins: [
+			Ext.create('Ext.grid.plugin.CellEditing', {
+				clicksToEdit: 1
 			})
-		var filterPanel = Ext.create('Ext.panel.Panel', {
-				
-				width: 218,
-				height: 168,
-				border:false,
-				items: [grids2],
-				bbar: [{
-						xtype: "label",
-						text: '总计:',
-						width: 90
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 180',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 40 0 30',
-						value: '0.00'
-					},
-					{
-						xtype: "textfield",
-						disabled: true,
-						width: 90,
-						margin: '0 0 0 0',
-						value: '0.00'
-					}
-				],
-			});
+		],
+		columns: [{
+				header: '',
+				xtype: 'rownumberer',
+				dataIndex: 'lh'
+			},
+
+			{
+				header: '(---)',
+				dataIndex: 'name',
+				width:50
+			}
+		],
+		height: '100%',
+		width: '100%'
+	})
+	
+	var filterPanel = Ext.create('Ext.panel.Panel', {
+		width: 218,
+		height: 168,
+		border:false,
+		items: [grids2],
+		bbar: [{
+				xtype: "label",
+				text: '总计:',
+				width: 90
+			},
+			{
+				xtype: "textfield",
+				disabled: true,
+				width: 90,
+				margin: '0 180',
+				value: '0.00'
+			},
+			{
+				xtype: "textfield",
+				disabled: true,
+				width: 90,
+				margin: '0',
+				value: '0.00'
+			},
+			{
+				xtype: "textfield",
+				disabled: true,
+				width: 90,
+				margin: '0 40 0 30',
+				value: '0.00'
+			},
+			{
+				xtype: "textfield",
+				disabled: true,
+				width: 90,
+				margin: '0 0 0 0',
+				value: '0.00'
+			}
+		],
+	});
 			
-		var grids = Ext.create('Ext.grid.Panel', {
-				
-				plugins: [
-					Ext.create('Ext.grid.plugin.CellEditing', {
-						clicksToEdit: 1
-					})
-				],
-				columns: [{
-						header: '',
-						xtype: 'rownumberer',
-						dataIndex: 'lh'
-					},
+	var grids = Ext.create('Ext.grid.Panel', {
+			
+			plugins: [
+				Ext.create('Ext.grid.plugin.CellEditing', {
+					clicksToEdit: 1
+				})
+			],
+			columns: [{
+					header: '',
+					xtype: 'rownumberer',
+					dataIndex: 'lh'
+				},
 
-					{
-						header: '(---)',
-						dataIndex: 'name',
-						width:50
-					}
-				],
-				height: 165,
-				width: 130
-			})
-    var mainWindow1 = Ext.create("Ext.window.Window",{  
-        title:'单选--部门设定',  
-        height:280,  
-        width:380,  
-        constrain:true,  
-        modal:true,  
-        plain:true,  
-        autoScroll:true,      
-        closeAction: 'hide',
-        icon:'',  
-        html:'',
-        items:[{
-        	layout:'column', 
-        	labelSeparator:'：',
-        	items:[{
-        	xtype: 'combo',
-       		name: 'photo',
-			editable : false,
-			queryMode: "local",
-			triggerAction : 'all',
-			displayField: "Name",
-            valueField: "Value",
-            store:['sad','sad'],
-			width:110,
-       		labelWidth: 50
-        },{
-        	xtype: 'numberfield',
-        	value: 0,
-        	minValue: 0,
-       		width:60
-        },{
-        	 xtype:"checkbox",
-        	 style:'margin-left:5px'
-        },{
-        	xtype:"displayfield",
-        	fieldLabel: '寻找同时选取',
-        	labelSeparator:''
-        },{
-        	layout: 'column',
-        	border:false,
-        	items:[{
-        		
-        	xtype: 'combo',
-       		name: 'photo',
-			editable : false,
-			queryMode: "local",
-			triggerAction : 'all',
-			displayField: "Name",
-            valueField: "Value",
-            store:['sad','sad'],
-			width:150
-        },{
-        	 xtype:"button",
-        	 text:'查询',
-        },{
-        	xtype:"button",
-        	text:'刷新'
-        },{
-        	xtype:"button",
-        	width:60,
-        	style:'margin-left:6px',
-        	text:'取回'
-        	}]
-        },{
-        	layout:"column",
-        	border:false,
-        	items:[{
-        	xtype:"button",
-        	width:60,
-        	text:'全选'
-        },{
-        	xtype:"button",
-        	width:60,
-        	text:'全清'
-        },{
-        	xtype:"button",
-        	width:60,
-        	text:'以下全选'
-        },{
-        	xtype:"button",
-        	width:60,
-        	text:'以下全清'
-        },{
-        	xtype:"button",
-        	width:60,
-        	text:'新增记录'
-        },{
-        	layout:"column",
-        	border:false,
-        	items:[grids,filterPanel]
-        }]
-        }]
-        }]
-        ,
-        renderTo:Ext.getBody()  
-    });
-
-		
-		
-		
-		
-		
-		
-		
-		
+				{
+					header: '(---)',
+					dataIndex: 'name',
+					width:50
+				}
+			],
+			height: 165,
+			width: 130
+	})
+	
 		var fielmenu2=new Ext.menu.Menu({
 			items:[{text:'销售订单转入',handler:function(){
 				mainWindow1.show();
@@ -396,6 +310,173 @@ var formsg=Ext.create('Ext.form.Panel', {
 					},
 					keyup: function(textField, e) {
 						if(e.getKey() == 115) {
+							//定义读取数据格式
+						    /*var dataReader = new Ext.data.JsonReader({
+						         root: 'data'
+						    },[
+						             { name: 'name' ,mapping: 'name'},
+						             { name: 'id',mapping: 'id'}
+						    ]);*/
+						    Ext.define('User', {
+							     extend: 'Ext.data.Model',
+							     fields: [
+							         {name: 'departid', type: 'string'},
+							         {name: 'departname',  type: 'string'}
+							     ]
+							 });
+						     //数据源
+						    /* var store = new Ext.data.Store({
+						                proxy: new Ext.data.HttpProxy({
+						                    url: 'http://127.0.0.1:8080/cus/info',
+						                    method: 'GET' 
+						                }),
+						                reader: dataReader,
+						                autoLoad:false
+						    });*/
+						   var store = Ext.create('Ext.data.Store', {
+							     model: 'User',
+							     proxy: {
+							         type: 'ajax',
+							         url: 'http://127.0.0.1:8080/purchase/getDepart',
+							         reader: {
+							             type: 'json',
+							             root: 'data'
+							         }
+							     },
+							     autoLoad: true
+							 });
+						    //store.load({params:{start:0,limit:8}});//加载数据时发送分页参数
+						    console.log(store);
+						     //显示栏
+						  /*  var dataColumns = new Ext.grid.ColumnModel({
+							    columns: [
+							        new Ext.grid.RowNumberer(),//行号
+							        { header: "编号",draggable:true, 
+							           dataIndex: 'id',sortable: true,
+							           resizable:false,
+							           renderer:function(value, cellmeta, record,rowIndex){
+							         		return '<a href="javascript:void(0);" title="'+value+'" onclick=alert("'+record.data.strimgname+'：girdID='+grid.getId()+'，行下标='+rowIndex+'")>'+value+'</a>';
+							    	 }},
+							         { header: "名称", dataIndex: 'name',resizable:false,sortable: true　}
+							    ],
+							    defaults: {
+							        align: 'center'
+							    }
+							});*/
+							var rightGrid = Ext.create('Ext.grid.Panel',{
+								   store: store,
+								   columns: [
+									  {header : '部门编号', dataIndex : 'departid'},
+									  {header : '部门名称', dataIndex : 'departname'}
+								   ],
+								   height: 200,
+								   width: 400,
+							});
+							var leftGrid = Ext.create('Ext.grid.Panel',{
+								   store: store,
+								   columns: [
+									  {header : '编号', dataIndex : 'id'},
+									  {header : '姓名', dataIndex : 'name'}
+								   ],
+								   height: 200,
+								   width: 400,
+							});
+							  var mainWindow1 = Ext.create("Ext.window.Window",{  
+							        title:'单选--部门设定',  
+							        height:280,  
+							        width:380,  
+							        constrain:true,  
+							        modal:true,  
+							        plain:true,  
+							        autoScroll:true,      
+							        closeAction: 'hide',
+							        icon:'',  
+							        html:'',
+							        items:[{
+							        	layout:'column', 
+							        	labelSeparator:'：',
+							        	items:[{
+							        	xtype: 'combo',
+							       		name: 'photo',
+										editable : false,
+										queryMode: "local",
+										triggerAction : 'all',
+										displayField: "Name",
+							            valueField: "Value",
+							            store:['sad','sad'],
+										width:110,
+							       		labelWidth: 50
+							        },{
+							        	xtype: 'numberfield',
+							        	value: 0,
+							        	minValue: 0,
+							       		width:60
+							        },{
+							        	 xtype:"checkbox",
+							        	 style:'margin-left:5px'
+							        },{
+							        	xtype:"displayfield",
+							        	fieldLabel: '寻找同时选取',
+							        	labelSeparator:''
+							        },{
+							        	layout: 'column',
+							        	border:false,
+							        	items:[{
+							        		
+							        	xtype: 'combo',
+							       		name: 'photo',
+										editable : false,
+										queryMode: "local",
+										triggerAction : 'all',
+										displayField: "Name",
+							            valueField: "Value",
+							            store:['sad','sad'],
+										width:150
+							        },{
+							        	 xtype:"button",
+							        	 text:'查询',
+							        },{
+							        	xtype:"button",
+							        	text:'刷新'
+							        },{
+							        	xtype:"button",
+							        	width:60,
+							        	style:'margin-left:6px',
+							        	text:'取回'
+							        	}]
+							        },{
+							        	layout:"column",
+							        	border:false,
+							        	items:[{
+							        	xtype:"button",
+							        	width:60,
+							        	text:'全选'
+							        },{
+							        	xtype:"button",
+							        	width:60,
+							        	text:'全清'
+							        },{
+							        	xtype:"button",
+							        	width:60,
+							        	text:'以下全选'
+							        },{
+							        	xtype:"button",
+							        	width:60,
+							        	text:'以下全清'
+							        },{
+							        	xtype:"button",
+							        	width:60,
+							        	text:'新增记录'
+							        },{
+							        	layout:"column",
+							        	border:false,
+							        	items:[rightGrid]
+							        }]
+							        }]
+							        }],
+							        renderTo:Ext.getBody()  
+							    });
+
 							mainWindow1.show();
 						}
 					}
